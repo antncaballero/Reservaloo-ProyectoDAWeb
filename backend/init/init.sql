@@ -1,11 +1,11 @@
 -- Eliminamos tablas si ya existen (por orden de dependencias)
-DROP TABLE IF EXISTS reservas;
-DROP TABLE IF EXISTS eventos;
-DROP TABLE IF EXISTS espacios;
-DROP TABLE IF EXISTS usuarios;
+-- DROP TABLE IF EXISTS reservas;
+-- DROP TABLE IF EXISTS eventos;
+-- DROP TABLE IF EXISTS espacios;
+-- DROP TABLE IF EXISTS usuarios;
 
 -- Tabla usuarios
-CREATE TABLE usuarios (
+CREATE TABLE IF NOT EXISTS usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(100),
   email VARCHAR(100) UNIQUE,
@@ -15,7 +15,7 @@ CREATE TABLE usuarios (
 );
 
 -- Tabla espacios
-CREATE TABLE espacios (
+CREATE TABLE IF NOT EXISTS espacios (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(100),
   propietario VARCHAR(100),
@@ -23,11 +23,12 @@ CREATE TABLE espacios (
   direccion TEXT,
   descripcion TEXT,
   estado VARCHAR(20),
+  imagen TEXT,
   CHECK (estado IN ('ACTIVO', 'CERRADO'))
 );
 
 -- Tabla eventos
-CREATE TABLE eventos (
+CREATE TABLE IF NOT EXISTS eventos (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(100),
   descripcion TEXT,
@@ -38,12 +39,13 @@ CREATE TABLE eventos (
   fecha_inicio DATE,
   fecha_fin DATE,
   espacio_id INT,
+  imagen TEXT,
   FOREIGN KEY (espacio_id) REFERENCES espacios(id),
   CHECK (categoria IN ('ACADEMICOS', 'CULTURALES', 'ENTRETENIMIENTO', 'DEPORTES', 'OTROS'))
 );
 
 -- Tabla reservas
-CREATE TABLE reservas (
+CREATE TABLE IF NOT EXISTS reservas (
   id INT AUTO_INCREMENT PRIMARY KEY,
   usuario_id INT,
   evento_id INT,
@@ -62,20 +64,23 @@ INSERT INTO usuarios (nombre, email, password, rol) VALUES
 ('Elena Torres', 'elena@daweb.com', 'pass', 'usuario');
 
 -- Insertar espacios
-INSERT INTO espacios (nombre, propietario, capacidad, direccion, descripcion, estado) VALUES
-('Auditorio Central', 'Ana Pérez', 200, 'Av. Universidad 123', 'Auditorio para eventos grandes', 'ACTIVO'),
-('Sala de Conferencias 1', 'Carlos Ruiz', 50, 'Calle 10 #45-20', 'Sala equipada con proyector', 'ACTIVO'),
-('Cancha de Fútbol', 'Ana Pérez', 22, 'Parque Municipal', 'Espacio al aire libre', 'ACTIVO'),
-('Salón Cultural', 'Carlos Ruiz', 100, 'Centro Cultural, piso 2', 'Ideal para eventos artísticos', 'CERRADO'),
-('Aula 204', 'Ana Pérez', 30, 'Edificio B, segundo piso', 'Aula para talleres académicos', 'ACTIVO');
+INSERT INTO espacios (nombre, propietario, capacidad, direccion, descripcion, estado, imagen) VALUES
+('Auditorio Central', 'Ana Pérez', 200, 'Av. Universidad 123', 'Auditorio para eventos grandes', 'ACTIVO', 'https://th.bing.com/th/id/OIP.Hixd5vQqo0YMmxvVlSTfDAHaE8?rs=1&pid=ImgDetMain'),
+('Sala de Conferencias 1', 'Carlos Ruiz', 50, 'Calle 10 #45-20', 'Sala equipada con proyector', 'ACTIVO', 'https://th.bing.com/th/id/OIP.lFzdi24wxELce4Nd4idOgAHaFj?rs=1&pid=ImgDetMain'),
+('Cancha de Fútbol', 'Ana Pérez', 22, 'Parque Municipal', 'Espacio al aire libre', 'ACTIVO', 'https://th.bing.com/th/id/OIP.zDyEhLdNgZ9zAmv1RdNt4AHaEK?rs=1&pid=ImgDetMain'),
+('Salón Cultural', 'Carlos Ruiz', 100, 'Centro Cultural, piso 2', 'Ideal para eventos artísticos', 'CERRADO', 'https://th.bing.com/th/id/OIP.Hixd5vQqo0YMmxvVlSTfDAHaE8?rs=1&pid=ImgDetMain'),
+('Aula 204', 'Ana Pérez', 30, 'Edificio B, segundo piso', 'Aula para talleres académicos', 'ACTIVO', 'https://th.bing.com/th/id/OIP.tyfWl3sBrKIW5M8GuAJMlQHaEK?rs=1&pid=ImgDetMain');
 
 -- Insertar eventos
-INSERT INTO eventos (nombre, descripcion, organizador, plazas, categoria, cancelado, fecha_inicio, fecha_fin, espacio_id) VALUES
-('Conferencia de Tecnología', 'Evento sobre innovación y tecnología', 'Ana Pérez', 150, 'ACADEMICOS', FALSE, '2025-05-10', '2025-05-10', 1),
-('Taller de Escritura Creativa', 'Aprende técnicas narrativas', 'Carlos Ruiz', 25, 'CULTURALES', FALSE, '2025-05-12', '2025-05-12', 5),
-('Partido de Fútbol Amistoso', 'Encuentro deportivo entre facultades', 'Ana Pérez', 22, 'DEPORTES', FALSE, '2025-05-15', '2025-05-15', 3),
-('Feria del Libro', 'Exposición de editoriales y autores', 'Carlos Ruiz', 80, 'CULTURALES', TRUE, '2025-04-20', '2025-04-22', 4),
-('Cine al Aire Libre', 'Proyección gratuita de películas', 'Ana Pérez', 100, 'ENTRETENIMIENTO', FALSE, '2025-05-18', '2025-05-18', 3);
+INSERT INTO eventos (nombre, descripcion, organizador, plazas, categoria, cancelado, fecha_inicio, fecha_fin, espacio_id, imagen) VALUES
+('Conferencia de Tecnología', 'Evento sobre innovación y tecnología', 'Ana Pérez', 150, 'ACADEMICOS', FALSE, '2025-05-10', '2025-05-10', 1, 'https://th.bing.com/th/id/OIP.Hixd5vQqo0YMmxvVlSTfDAHaE8?rs=1&pid=ImgDetMain'),
+('Taller de Escritura Creativa', 'Aprende técnicas narrativas', 'Carlos Ruiz', 25, 'CULTURALES', FALSE, '2025-05-12', '2025-05-12', 5, 'https://th.bing.com/th/id/OIP.JOi9y7g9xagFFNm5iCsGlAHaE8?rs=1&pid=ImgDetMain'),
+('Partido de Fútbol Amistoso', 'Encuentro deportivo entre facultades', 'Ana Pérez', 22, 'DEPORTES', FALSE, '2025-05-15', '2025-05-15', 3, 'https://th.bing.com/th/id/OIP.zDyEhLdNgZ9zAmv1RdNt4AHaEK?rs=1&pid=ImgDetMain'),
+('Feria del Libro', 'Exposición de editoriales y autores', 'Carlos Ruiz', 80, 'CULTURALES', TRUE, '2025-04-20', '2025-04-22', 4, 'https://th.bing.com/th/id/OIP.JOi9y7g9xagFFNm5iCsGlAHaE8?rs=1&pid=ImgDetMain'),
+('Cine al Aire Libre', 'Proyección gratuita de películas', 'Ana Pérez', 100, 'ENTRETENIMIENTO', FALSE, '2025-05-18', '2025-05-18', 3, 'https://th.bing.com/th/id/OIP.onHirexJ4IsNUTMjbYKDRQHaEK?rs=1&pid=ImgDetMain'),
+('Concierto de Jazz', 'Noche de música en vivo', 'Elena Torres', 80, 'ENTRETENIMIENTO', FALSE, '2025-05-22', '2025-05-22', 1, 'https://th.bing.com/th/id/OIP.5eYyoWKMP1-TUdaIg_AJpgHaE8?rs=1&pid=ImgDetMain'),
+('Concierto de Rock', 'Presentación de bandas locales', 'Carlos Ruiz', 200, 'ENTRETENIMIENTO', FALSE, '2025-05-20', '2025-05-20', 1, 'https://th.bing.com/th/id/OIP.5eYyoWKMP1-TUdaIg_AJpgHaE8?rs=1&pid=ImgDetMain'),
+('Exposición de Arte', 'Muestra de artistas emergentes', 'Ana Pérez', 50, 'CULTURALES', FALSE, '2025-05-25', '2025-05-27', 4, 'https://th.bing.com/th/id/OIP.JOi9y7g9xagFFNm5iCsGlAHaE8?rs=1&pid=ImgDetMain');
 
 -- Insertar reservas
 INSERT INTO reservas (usuario_id, evento_id, cantidad) VALUES

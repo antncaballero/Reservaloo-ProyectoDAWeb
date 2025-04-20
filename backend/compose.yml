@@ -1,48 +1,30 @@
-version: '2'
-networks:
-    mysql-phpmyadmin:
-        name: mysql-phpmyadmin
-        # use the bridge driver
-        driver: bridge
-
-volumes:
-    mysqldata:
-        driver: local
-        driver_opts:
-            type: 'none'
-            o: 'bind'
-            device: '${HOME}/server/mysql-phpmyadmin/data'
+version: '3.8'
 
 services:
-    mysql:
-        image: mysql:8.0
-        container_name: mysql
-        environment:
-            MYSQL_ROOT_PASSWORD: daweb
-            MYSQL_DATABASE: daweb
-            MYSQL_USER: daweb
-            MYSQL_PASSWORD: daweb
-        ports:
-            - "6033:3306"
-        volumes:
-            - /mysqldata:/var/lib/mysql
-            - ./init:/docker-entrypoint-initdb.d
-        networks:
-            mysql-phpmyadmin:
-                aliases:
-                - mysql
-        
-    phpmyadmin:
-        image: phpmyadmin:5.2.0
-        container_name: phpmyadmin
-        links:
-            - mysql
-        environment:
-            PMA_HOST: mysql
-            PMA_PORT: 3306
-        ports:
-            - 8081:80
-        networks:
-            mysql-phpmyadmin:
-                aliases:
-                - phpmyadmin
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: daweb
+      MYSQL_DATABASE: daweb
+      MYSQL_USER: daweb
+      MYSQL_PASSWORD: daweb
+    ports:
+      - "6033:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: daweb
+
+volumes:
+  mysql_data:
