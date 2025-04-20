@@ -9,12 +9,17 @@ import authRouter from './src/routes/auth.js';
 import { fileURLToPath } from 'url';
 import verificarToken from './src/middlewares/verificarToken.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import { engine } from 'express-handlebars';
 
 const app = express();
 
-// view engine setup
+app.engine('hbs', engine({
+  extname: 'hbs',
+  defaultLayout: false // esto desactiva los layouts por defecto
+}));
 app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'hbs');
+
 
 app.use(logger('dev'));
 app.use(express.json());

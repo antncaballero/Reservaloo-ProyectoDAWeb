@@ -7,7 +7,7 @@ dotenv.config();
 const router = express.Router();
 
 router.get('/login', (req, res) => {
-  res.status(200).render('login', { title: 'Login' });
+  res.status(200).render('login');
 });
 
 router.post('/login', AuthController.login);

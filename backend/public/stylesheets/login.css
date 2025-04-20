@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #3d348b, #c6c4e8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .login-container {
+    width: 100%;
+    max-width: 460px;
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 24px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #3d348b;
+    font-weight: 700;
+    font-size: clamp(1.6rem, 4vw, 2.1rem); /* adaptativo */
+  }
+  
+  label {
+    font-weight: 500;
+    color: #555;
+    font-size: 1rem;
+  }
+  
+  .form-control {
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    padding: 12px 15px;
+  }
+  
+  .btn-custom {
+    background-color: #61E786;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    padding: 12px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-custom:hover {
+    background-color: #52db79;
+    color: whitesmoke;
+  }
+  
+  @media (max-width: 576px) {
+    .login-container {
+      padding: 30px 20px;
+      border-radius: 16px;
+    }
+  
+    .form-control {
+      font-size: 0.95rem;
+      padding: 10px 12px;
+    }
+  
+    .btn-custom {
+      font-size: 1rem;
+      padding: 10px;
+    }
+  }
+  
