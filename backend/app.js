@@ -32,7 +32,7 @@ app.use('/auth', authRouter);
 app.use('/', verificarToken, indexRouter);
 app.use('/users', verificarToken, usersRouter);
 
-// catch 404 and forward to error handler
+
 app.use(function(req, res, next) {
   next(createError(404));
 });
