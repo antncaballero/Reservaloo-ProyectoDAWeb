@@ -24,4 +24,15 @@ export class EventoController {
             res.status(500).send('Error fetching evento from the database');
         }
     }
+
+    static async getEventosByCategoria(req, res) {
+        const categoria = req.params.categoria;
+        try {
+            const eventos = await Evento.getEventosByCategoria(categoria);
+            res.status(200).json(eventos);
+        } catch (error) {
+            console.error('Error fetching eventos:', error);
+            res.status(500).send('Error fetching eventos from the database');
+        }
+    }
 }

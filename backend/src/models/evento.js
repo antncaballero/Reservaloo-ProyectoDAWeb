@@ -10,5 +10,10 @@ export class Evento {
       const [rows] = await db.query('SELECT * FROM eventos WHERE id = ?', [id]);
       return rows[0];
    }
+
+   static async getEventosByCategoria(categoria) {
+      const [rows] = await db.query('SELECT * FROM eventos WHERE categoria = ?', [categoria]);
+      return rows;
+   }
  
 }
