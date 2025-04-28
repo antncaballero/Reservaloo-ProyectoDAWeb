@@ -7,6 +7,7 @@ import indexRouter from './src/routes/index.js';
 import usersRouter from './src/routes/users.js';
 import authRouter from './src/routes/auth.js';
 import espaciosRouter from './src/routes/espacios.js';
+import eventosRouter from './src/routes/eventos.js';
 import { fileURLToPath } from 'url';
 import verificarToken from './src/middlewares/verificarToken.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -34,6 +35,8 @@ app.use('/auth', authRouter);
 app.use('/', verificarToken, indexRouter);
 app.use('/users', verificarToken, usersRouter);
 app.use('/espacios', verificarToken, espaciosRouter);
+app.use('/eventos', verificarToken, eventosRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
