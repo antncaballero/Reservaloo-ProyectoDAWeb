@@ -6,6 +6,7 @@ import logger from 'morgan';
 import indexRouter from './src/routes/index.js';
 import usersRouter from './src/routes/users.js';
 import authRouter from './src/routes/auth.js';
+import espaciosRouter from './src/routes/espacios.js';
 import { fileURLToPath } from 'url';
 import verificarToken from './src/middlewares/verificarToken.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -20,6 +21,7 @@ app.engine('hbs', engine({
 app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'hbs');
 
+// TODO CONFIGURAR CORS
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/auth', authRouter);
 app.use('/', verificarToken, indexRouter);
 app.use('/users', verificarToken, usersRouter);
+app.use('/espacios', verificarToken, espaciosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

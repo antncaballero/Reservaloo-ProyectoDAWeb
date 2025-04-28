@@ -10,4 +10,9 @@ export class User {
       const [rows] = await db.query('SELECT * FROM usuarios WHERE id = ?', [id]);
       return rows[0];
    }
+   
+   static async getUserByEmail(email) {
+      const [rows] = await db.query('SELECT * FROM usuarios WHERE email = ?', [email]);
+      return rows[0];
+   }   
 }
