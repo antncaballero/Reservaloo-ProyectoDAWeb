@@ -24,4 +24,26 @@ export class ReservaController {
             res.status(500).send('Error fetching reserva from the database');
         }
     }
+
+    static async getReservasByEvento(req, res) {
+        const eventoId = req.params.eventoId;
+        try {
+            const reservas = await Reserva.getReservasByEvento(eventoId);
+            res.status(200).json(reservas);
+        } catch (error) {
+            console.error('Error fetching reservas:', error);
+            res.status(500).send('Error fetching reservas from the database');
+        }
+    }
+    
+    static async getReservasByUsuario(req, res) {
+        const usuarioId = req.params.usuarioId;
+        try {
+            const reservas = await Reserva.getReservasByUsuario(usuarioId);
+            res.status(200).json(reservas);
+        } catch (error) {
+            console.error('Error fetching reservas:', error);
+            res.status(500).send('Error fetching reservas from the database');
+        }
+    }
 }
