@@ -147,6 +147,7 @@ h2 {
   .login-container {
     max-width: 420px;
     padding: 1.75rem;
+    right: 0;
   }
 
   .btn-primary {
