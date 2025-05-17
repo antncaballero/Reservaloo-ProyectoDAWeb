@@ -25,7 +25,7 @@ app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'hbs');
 
 // TODO CONFIGURAR CORS
-const allowedOrigins = new Set(['http://localhost:5173']);
+const allowedOrigins = new Set(['http://localhost:5173', 'http://localhost:3000']);
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.has(origin)) {
