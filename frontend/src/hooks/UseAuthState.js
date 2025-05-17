@@ -11,10 +11,8 @@ export function useAuthState() {
 
     const checkAuth = async () => {
         try {
-            // const response = await fetchWithAuth('/auth/check');
-            const response = await fetch('http://localhost:3000/auth/check', {
-                credentials: 'include',
-            });
+            const response = await fetchWithAuth('/auth/check');
+            
             if (response.ok) {
                 const data = await response.json();
                 setUser(data);

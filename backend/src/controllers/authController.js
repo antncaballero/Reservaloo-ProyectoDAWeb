@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken';
 import { db } from '../../config/db.js';
 import { User } from '../models/user.js';
 import dotenv from 'dotenv';
+import bcrypt from 'bcrypt';
 dotenv.config();
-//import bcrypt from 'bcrypt';
 
 export class AuthController {
     static async login(req, res) {
@@ -14,13 +14,6 @@ export class AuthController {
             if (!email || !password) {
               return res.status(400).send('Email y contraseña son requeridos');
             }
-        
-            // Consulta a la base de datos
-            // const [results] = await db.query('SELECT * FROM usuarios WHERE email = ?', [email]);
-            // if (results.length === 0) {
-            //   return res.status(401).send('Credenciales inválidas');
-            // }
-            // const user = results[0];
 
             const user = await User.getUserByEmail(email);
             if (!user){
@@ -28,8 +21,7 @@ export class AuthController {
             }
         
             // Comparación segura de contraseñas
-            //const valid = await bcrypt.compare(password, user.password);
-            const valid = password === user.password; // Cambia esto por bcrypt.compare si usas hash
+            const valid = await bcrypt.compare(password, user.password);
             if (!valid) {
               return res.status(401).send('Credenciales inválidas');
             }
