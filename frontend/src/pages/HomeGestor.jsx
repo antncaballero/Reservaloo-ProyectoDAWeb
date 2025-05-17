@@ -5,7 +5,7 @@ export default function HomeGestor() {
     const { user } = useContext(AuthContext);
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto">
             <h1 className="text-3xl font-bold mb-6">¡Bienvenido, {user?.nombre}!</h1>
             
             <div className="max-w-3xl">

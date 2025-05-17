@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { RutaGestor } from './components/RutaGestor';
 import { RutaUsuario } from './components/RutaUsuario';
+import UserLayout from './components/layouts/UserLayout';
+import GestorLayout from './components/layouts/GestorLayout';
 
 // Páginas
 import HomeUsuario from './pages/HomeUsuario';
@@ -11,6 +13,7 @@ import Espacios from './pages/Espacios';
 import GestionEventos from './pages/GestionEventos';
 import GestionEspacios from './pages/GestionEspacios';
 import RutaDefault from './pages/RutaDefault';
+
 function App() {
   return (
     <AuthProvider>
@@ -19,39 +22,53 @@ function App() {
           {/* Rutas protegidas para usuarios normales */}
           <Route path="/" element={
             <RutaUsuario>
-              <HomeUsuario />
+              <UserLayout>
+                <HomeUsuario />
+              </UserLayout>
             </RutaUsuario>
           } />
           <Route path="/eventos" element={
             <RutaUsuario>
-              <Eventos />
+              <UserLayout>
+                <Eventos />
+              </UserLayout>
             </RutaUsuario>
           } />
           <Route path="/espacios" element={
             <RutaUsuario>
-              <Espacios />
+              <UserLayout>
+                <Espacios />
+              </UserLayout>
             </RutaUsuario>
           } />
           {/* Rutas protegidas solo para gestores */}
           <Route path="/gestor" element={
             <RutaGestor>
-              <HomeGestor />
+              <GestorLayout>
+                <HomeGestor />
+              </GestorLayout>
             </RutaGestor>
           } />
           <Route path="/gestion/eventos" element={
             <RutaGestor>
-              <GestionEventos />
+              <GestorLayout>
+                <GestionEventos />
+              </GestorLayout>
             </RutaGestor>
           } />
           <Route path="/gestion/espacios" element={
             <RutaGestor>
-              <GestionEspacios />
+              <GestorLayout>
+                <GestionEspacios />
+              </GestorLayout>
             </RutaGestor>
           } />
 
           {/* Ruta por defecto */}
           <Route path="*" element={
-            <RutaDefault />
+            <UserLayout>
+              <RutaDefault />
+            </UserLayout>
           } />
         </Routes>
       </BrowserRouter>
