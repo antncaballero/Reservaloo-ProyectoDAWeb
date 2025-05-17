@@ -49,7 +49,8 @@ export class AuthController {
               secure: false,
               sameSite: 'strict',
             });
-        
+            
+            // TODO: redirigir a react según el rol del usuario
             res.redirect('/');
           } catch (error) {
             console.error('Error en el login:', error);
