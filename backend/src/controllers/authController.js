@@ -50,8 +50,9 @@ export class AuthController {
               sameSite: 'strict',
             });
             
-            // TODO: redirigir a react según el rol del usuario
-            res.redirect('/');
+            // Redirigir según el rol del usuario
+            const redirectUrl = user.rol === 'admin' ? 'http://localhost:5173/gestion' : 'http://localhost:5173/';
+            res.redirect(redirectUrl);
           } catch (error) {
             console.error('Error en el login:', error);
             res.status(500).send('Error interno del servidor');
@@ -65,6 +66,33 @@ export class AuthController {
         } catch (error) {
             console.error('Error during logout:', error);
             res.status(500).send('Error during logout');
+        }
+    }
+
+    static async checkAuth(req, res) {
+        try {
+            const token = req.cookies.accessToken;
+            
+            if (!token) {
+                return res.status(401).json({ message: 'No token provided' });
+            }
+
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            const user = await User.getUserById(decoded.id);
+
+            if (!user) {
+                return res.status(401).json({ message: 'User not found' });
+            }
+
+            res.json({
+                id: user.id,
+                nombre: user.nombre,
+                email: user.email,
+                rol: user.rol
+            });
+        } catch (error) {
+            console.error('Error checking auth:', error);
+            res.status(401).json({ message: 'Invalid token' });
         }
     }
 }

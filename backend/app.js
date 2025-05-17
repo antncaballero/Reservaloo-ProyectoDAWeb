@@ -1,6 +1,7 @@
 import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
+import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './src/routes/index.js';
@@ -24,6 +25,18 @@ app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'hbs');
 
 // TODO CONFIGURAR CORS
+const allowedOrigins = new Set(['http://localhost:5173']);
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.has(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Origen no permitido'));
+    }
+  },
+  credentials: true,
+}));
+
 
 app.use(logger('dev'));
 app.use(express.json());
