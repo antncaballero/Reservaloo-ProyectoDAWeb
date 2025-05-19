@@ -12,7 +12,7 @@ const verificarToken = (req, res, next) => {
     next(); // Continuar al siguiente middleware o ruta
   }
   catch (error) {
-    return res.status(403).json({ message: 'Token inválido' });
+    return res.status(403).redirect('/auth/login');
   }
 };
 

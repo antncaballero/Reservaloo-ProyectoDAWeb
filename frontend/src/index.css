@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 @import 'tailwindcss';
 
+@theme{
+  --color-primary: #283593;
+  --color-secondary: #ffd700;
+}
+
 body {
   min-height: 100vh;
   background: linear-gradient(135deg, rgba(26,35,126,0.95), rgba(40,53,147,0.70)), url('./assets/images/eventos.jpg') center/cover no-repeat fixed;

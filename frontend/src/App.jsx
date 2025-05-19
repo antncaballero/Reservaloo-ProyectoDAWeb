@@ -6,12 +6,12 @@ import UserLayout from './components/layouts/UserLayout';
 import GestorLayout from './components/layouts/GestorLayout';
 
 // Páginas
-import HomeUsuario from './pages/HomeUsuario';
-import HomeGestor from './pages/HomeGestor';
-import Eventos from './pages/Eventos';
-import Espacios from './pages/Espacios';
-import GestionEventos from './pages/GestionEventos';
-import GestionEspacios from './pages/GestionEspacios';
+import HomeUsuario from './pages/usuario/HomeUsuario';
+import HomeGestor from './pages/gestor/HomeGestor';
+import Eventos from './pages/usuario/Eventos';
+import Espacios from './pages/usuario/Espacios';
+import GestionEventos from './pages/gestor/GestionEventos';
+import GestionEspacios from './pages/gestor/GestionEspacios';
 import RutaDefault from './pages/RutaDefault';
 
 function App() {

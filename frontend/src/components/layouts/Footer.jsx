@@ -15,22 +15,22 @@ export default function Footer() {
                     {/* Sección de redes sociales */}
                     <div className="flex space-x-6">
                         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                            <svg className="w-6 h-6" fill="currentColor">
+                            <svg className="w-6 h-6 hover:scale-110 transition-all duration-300 ease-in-out" fill="currentColor">
                                 <use xlinkHref={`${sprite}#instagram`} />
                             </svg>
                         </a>
                         <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                            <svg className="w-6 h-6" fill="currentColor">
+                            <svg className="w-6 h-6 hover:scale-110 transition-all duration-300 ease-in-out" fill="currentColor">
                                 <use xlinkHref={`${sprite}#x`} />
                             </svg>
                         </a>
                         <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-                            <svg className="w-6 h-6" fill="currentColor">
+                            <svg className="w-6 h-6 hover:scale-110 transition-all duration-300 ease-in-out" fill="currentColor">
                                 <use xlinkHref={`${sprite}#youtube`} />
                             </svg>
                         </a>
                         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                            <svg className="w-6 h-6" fill="currentColor">
+                            <svg className="w-6 h-6 hover:scale-110 transition-all duration-300 ease-in-out" fill="currentColor">
                                 <use xlinkHref={`${sprite}#linkedin`} />
                             </svg>
                         </a>

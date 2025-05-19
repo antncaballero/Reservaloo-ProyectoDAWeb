@@ -13,16 +13,16 @@ export default function Navbar() {
             <div className="container mx-auto px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center space-x-2">
+                    <Link to="/" className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                         <img src={logo} alt="Reservaloo logo" className="h-10" />
                     </Link>
 
                     {/* Enlaces de navegación en desktop */}
                     <div className="hidden md:flex space-x-8">
-                        <Link to="/eventos" className="hover:text-gray-300 transition-colors">
+                        <Link to="/eventos" className="hover:text-secondary transition-colors">
                             Eventos
                         </Link>
-                        <Link to="/espacios" className="hover:text-gray-300 transition-colors">
+                        <Link to="/espacios" className="hover:text-secondary transition-colors">
                             Espacios
                         </Link>
                     </div>
@@ -53,10 +53,10 @@ export default function Navbar() {
                 <div
                     className={`md:hidden mt-2 space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${open ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
                 >
-                    <Link to="/eventos" className="block hover:text-gray-300" onClick={() => setOpen(false)}>
+                    <Link to="/eventos" className="block hover:text-secondary" onClick={() => setOpen(false)}>
                         Eventos
                     </Link>
-                    <Link to="/espacios" className="block hover:text-gray-300" onClick={() => setOpen(false)}>
+                    <Link to="/espacios" className="block hover:text-secondary" onClick={() => setOpen(false)}>
                         Espacios
                     </Link>
                     <button onClick={logout} className="bg-red-600 hover:bg-red-700 px-4 py-2 mt-2 mb-4 rounded transition-colors cursor-pointer" >
