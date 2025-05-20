@@ -1,6 +1,6 @@
 export default function Espacios() {
     return (
-        <div>
+        <div className="mt-22">
             <h1>Espacios</h1>
         </div>
     );

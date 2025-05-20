@@ -9,11 +9,11 @@ export default function Navbar() {
     const [open, setOpen] = useState(false);
 
     return (
-        <nav className="text-white border-b border-gray-300 mb-8">
+        <nav className="text-white border-b border-gray-300 mb-8 bg-gradient-to-br from-primary/95 to-indigo-800/75 fixed top-0 w-full z-10">
             <div className="container mx-auto px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <Link to="/" onClick={() => setOpen(false)} className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 ease-in-out" >
                         <img src={logo} alt="Reservaloo logo" className="h-10" />
                     </Link>
 
@@ -30,10 +30,7 @@ export default function Navbar() {
                     {/* Perfil y logout en desktop */}
                     <div className="hidden md:flex items-center space-x-4">
                         <span>{user?.nombre}</span>
-                        <button 
-                            onClick={logout}
-                            className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition-colors cursor-pointer"
-                        >
+                        <button onClick={logout}className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition-colors cursor-pointer">
                             Cerrar sesión
                         </button>
                     </div>

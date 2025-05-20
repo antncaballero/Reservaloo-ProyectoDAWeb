@@ -49,11 +49,11 @@ export class Evento {
       }
 
       if (filtros.plazas_minimas) {
-         query += ' HAVING plazas_disponibles >= ?';
+         query += ' GROUP BY e.id HAVING plazas_disponibles >= ?';
          params.push(filtros.plazas_minimas);
+      } else {
+         query += ' GROUP BY e.id';
       }
-
-      query += ' GROUP BY e.id';
 
       const [rows] = await db.query(query, params);
       return rows;

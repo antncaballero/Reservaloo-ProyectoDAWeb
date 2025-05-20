@@ -2,7 +2,7 @@ import sprite from '../../assets/images/sprite.svg';
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-900 text-white py-8 mt-10">
+        <footer className="bg-gray-900 text-white py-8 mt-10 bottom-0">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between items-center">
                     {/* Sección de copyright */}

@@ -14,7 +14,6 @@ export function RutaGestor({ children }) {
 
     if (!user) {
         window.location.href = 'http://localhost:3000/auth/login';
-        return null;
     }
 
     if (user.rol !== 'gestor') {

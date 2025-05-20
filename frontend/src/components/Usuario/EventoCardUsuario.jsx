@@ -7,33 +7,46 @@ const EventoCardUsuario = ({ evento }) => {
     const handleVerEvento = () => {
         navigate(`/eventos/${evento.id}`);
     };
+
     return (
-        <div className="w-75 h-90 border-1 rounded-lg">
-            <img 
-                src={evento.imagen} 
-                alt={evento.nombre}
-                className="w-75 h-35 object-cover rounded-t-lg border-b-1"
-            />
-            <div className="p-2 h-55 flex flex-col justify-between">
-                <h3 className="text-lg font-semibold">{evento.nombre}</h3>
-                <p className="text-sm">
-                    {evento.descripcion}
-                </p>
-                <div className="text-sm mt-auto">
-                    <p><strong>Espacio:</strong> {evento.nombre_espacio}</p>
-                    <p><strong>Organizador:</strong> {evento.organizador}</p>
-                    <p><strong>Plazas disponibles:</strong> {evento.plazas_disponibles}</p>
-                    <p><strong>Fecha:</strong> {new Date(evento.fecha_inicio).toLocaleDateString()}</p>
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden w-80 sm:w-90 h-110 flex flex-col transition-transform duration-300 hover:scale-105">
+            <div className="h-40 w-full">
+                <img 
+                    src={evento.imagen} 
+                    alt={evento.nombre}
+                    className="h-40 w-full object-cover"
+                />
+            </div>
+            <div className="p-4 flex-1 flex flex-col">
+                <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-1">{evento.nombre}</h3>
+                <div className="space-y-2 flex-1">
+                    <p className="text-gray-600 line-clamp-1"> {evento.descripcion} </p>
+                    <p className="text-gray-600 line-clamp-1">
+                        <span className="font-medium">Espacio:</span> {evento.nombre_espacio}
+                    </p>
+                    <p className="text-gray-600 line-clamp-1">
+                        <span className="font-medium">Organizador:</span> {evento.organizador}
+                    </p>
+                    <p className="text-gray-600">
+                        <span className="font-medium">Plazas disponibles:</span> {evento.plazas_disponibles}
+                    </p>
+                    <p className="text-gray-600">
+                        <span className="font-medium">Fecha:</span> {new Date(evento.fecha_inicio).toLocaleDateString()}
+                    </p>
                 </div>
-                <button 
-                    className={`${evento.cancelado 
-                        ? "bg-gray-300 text-red-500 cursor-not-allowed" 
-                        : "bg-white text-primary hover:bg-gray-200 cursor-pointer"} 
-                        font-semibold py-1 px-2 mt-auto rounded-lg transition-colors mb-1 w-auto`}
-                    onClick={!evento.cancelado ? handleVerEvento : undefined}
-                >
-                    {evento.cancelado ? 'Evento cancelado' : 'Ir al evento'}
-                </button>
+                <div className="mt-4 flex justify-between items-center">
+                    <button 
+                        onClick={!evento.cancelado ? handleVerEvento : undefined}
+                        className={`${
+                            evento.cancelado 
+                                ? "bg-gray-300 text-red-500 cursor-not-allowed" 
+                                : "bg-primary text-white hover:bg-primary/90 cursor-pointer"
+                        } px-4 py-2 rounded-md transition-colors`}
+                        disabled={evento.cancelado}
+                    >
+                        {evento.cancelado ? 'Evento cancelado' : 'Ir al evento'}
+                    </button>
+                </div>
             </div>
         </div>
     );

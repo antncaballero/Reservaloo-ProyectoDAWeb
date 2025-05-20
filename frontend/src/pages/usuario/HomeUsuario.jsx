@@ -5,7 +5,7 @@ export default function HomeUsuario() {
     const { user } = useContext(AuthContext);
 
     return (
-        <div className="container mx-auto ">
+        <div className="container mx-auto mt-22">
             <h1 className="text-3xl font-bold mb-6">¡Bienvenido, {user?.nombre}!</h1>
             
             <div className="max-w-3xl">

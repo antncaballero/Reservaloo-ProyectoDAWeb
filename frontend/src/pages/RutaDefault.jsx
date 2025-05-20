@@ -1,6 +1,6 @@
 export default function RutaDefault() {
     return (  
-            <div className="text-center p-8">
+            <div className="text-center p-8 mt-30">
                 <h1 className="text-4xl font-bold mb-4 text-white">¡Ups!</h1>
                 <p className="text-xl text-white mb-3">Lo sentimos, la página que buscas no existe.</p>
                 <p className="text-white">No hemos podido encontrar la ruta que estás buscando.</p>

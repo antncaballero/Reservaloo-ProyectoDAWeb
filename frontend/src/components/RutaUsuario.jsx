@@ -13,9 +13,7 @@ export function RutaUsuario({ children }) {
     }
 
     if (!user) {
-        // window.location.href = 'http://localhost:3000/auth/login';
-        // return null;
-        return <div>No hay usuario</div>;
+        window.location.href = 'http://localhost:3000/auth/login';
     }
 
     // Se redirige a la página de gestor si el usuario no es usuario, ya que solo hay dos roles

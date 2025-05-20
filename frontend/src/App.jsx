@@ -13,6 +13,9 @@ import Espacios from './pages/usuario/Espacios';
 import GestionEventos from './pages/gestor/GestionEventos';
 import GestionEspacios from './pages/gestor/GestionEspacios';
 import RutaDefault from './pages/RutaDefault';
+import Footer from './components/layouts/Footer';
+import CrearEspacio from './pages/gestor/CrearEspacio';
+import ActualizarEspacio from './pages/gestor/ActualizarEspacio';
 
 function App() {
   return (
@@ -30,7 +33,7 @@ function App() {
           <Route path="/eventos" element={
             <RutaUsuario>
               <UserLayout>
-                <Eventos />
+                <Eventos/>
               </UserLayout>
             </RutaUsuario>
           } />
@@ -63,12 +66,27 @@ function App() {
               </GestorLayout>
             </RutaGestor>
           } />
-
+          <Route path="/espacios/crear" element={
+            <RutaGestor>
+              <GestorLayout>
+                <CrearEspacio />
+              </GestorLayout>
+            </RutaGestor>
+          } />
+          <Route path="/espacios/actualizar/:id" element={
+            <RutaGestor>
+              <GestorLayout>
+                <ActualizarEspacio />
+              </GestorLayout>
+            </RutaGestor>
+          } />
+          
           {/* Ruta por defecto */}
           <Route path="*" element={
-            <UserLayout>
-              <RutaDefault />
-            </UserLayout>
+              <div className="flex flex-col h-screen justify-between">
+                <RutaDefault />
+                <Footer />
+              </div>
           } />
         </Routes>
       </BrowserRouter>

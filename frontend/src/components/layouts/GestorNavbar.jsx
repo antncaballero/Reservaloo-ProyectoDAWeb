@@ -9,11 +9,11 @@ export default function GestorNavbar() {
     const [open, setOpen] = useState(false);
 
     return (
-        <nav className="text-white border-b border-gray-300 mb-8">
+        <nav className="text-white border-b border-gray-300 mb-8 bg-gradient-to-br from-primary/95 to-indigo-800/75 fixed top-0 w-full z-10">
             <div className="container mx-auto px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
-                    <Link to="/gestor" className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 ease-in-out">
+                    <Link to="/gestor" onClick={() => setOpen(false)} className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 ease-in-out">
                         <img src={logo} alt="Reservaloo logo" className="h-10" />
                     </Link>
 
