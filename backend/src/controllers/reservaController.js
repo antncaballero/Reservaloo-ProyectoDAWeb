@@ -46,4 +46,24 @@ export class ReservaController {
             res.status(500).send('Error fetching reservas from the database');
         }
     }
+
+    static async deleteReserva(req, res) {
+        const reservaId = req.params.id;
+        try {
+            const reserva = await Reserva.getReservaById(reservaId);
+            if (!reserva) {
+                return res.status(404).send('Reserva no encontrada');
+            }
+
+            const success = await Reserva.deleteReserva(reservaId);
+            if (success) {
+                res.status(200).json({ message: 'Reserva eliminada correctamente' });
+            } else {
+                res.status(500).send('Error al eliminar la reserva');
+            }
+        } catch (error) {
+            console.error('Error deleting reserva:', error);
+            res.status(500).send('Error al eliminar la reserva de la base de datos');
+        }
+    }
 }

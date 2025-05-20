@@ -16,6 +16,7 @@ import RutaDefault from './pages/RutaDefault';
 import Footer from './components/layouts/Footer';
 import CrearEspacio from './pages/gestor/CrearEspacio';
 import ActualizarEspacio from './pages/gestor/ActualizarEspacio';
+import Reservas from './pages/usuario/Reservas';
 
 function App() {
   return (
@@ -41,6 +42,13 @@ function App() {
             <RutaUsuario>
               <UserLayout>
                 <Espacios />
+              </UserLayout>
+            </RutaUsuario>
+          } />
+          <Route path="/reservas" element={
+            <RutaUsuario>
+              <UserLayout>
+                <Reservas />
               </UserLayout>
             </RutaUsuario>
           } />
