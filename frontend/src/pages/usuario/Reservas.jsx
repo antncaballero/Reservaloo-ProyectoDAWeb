@@ -2,6 +2,7 @@ import ReservaCard from "../../components/Usuario/ReservaCard";
 import useReservas from "../../hooks/useReservas";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { ToastContainer } from "react-toastify";
 
 export default function Reservas() {
     const { user } = useContext(AuthContext);
@@ -16,11 +17,12 @@ export default function Reservas() {
         const hoy = new Date();
         hoy.setHours(0, 0, 0, 0);
         return filtro === 'actuales' ? fechaInicio >= hoy : fechaInicio < hoy;
-    });
-
+    });    
+    
     return (
         <div className="container mx-auto px-4 py-8 mt-22">
             {/* Sección de filtro */}
+            <ToastContainer />
             <section className="mb-8 flex flex-col justify-between items-center gap-4">
                 <h1 className="text-4xl font-bold mb-4 text-center md:text-left">Mis Reservas</h1>
                 <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-4">

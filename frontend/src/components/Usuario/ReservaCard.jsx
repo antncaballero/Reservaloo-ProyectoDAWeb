@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { fetchWithAuth } from '../../api/api';
+import { toast } from 'react-toastify';
 
 const ReservaCard = ({ reserva, onCancelar }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -8,8 +9,27 @@ const ReservaCard = ({ reserva, onCancelar }) => {
     const puedeCancelar = fechaInicio > new Date();
 
     const handleCancelar = async () => {
-        if (!puedeCancelar) return;
-        
+      if (!puedeCancelar) return;
+      // Mostrar toast de confirmación
+      toast.info(({}) => (
+        <aside>
+          <p className="mb-2">
+            ¿Estás seguro de que deseas cancelar esta reserva?
+          </p>
+          <button
+            className="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded text-sm cursor-pointer "
+            onClick={() => {
+                confirmarCancelacion(); 
+                toast.dismiss(); // Cerrar el toast de confirmación
+            }}
+          >
+            Sí, cancelar
+          </button>
+        </aside>
+      ));
+    };
+    
+    const confirmarCancelacion = async () => {
         setIsLoading(true);
         try {
             const response = await fetchWithAuth(`/reservas/${reserva.id}`, {
@@ -17,9 +37,19 @@ const ReservaCard = ({ reserva, onCancelar }) => {
             });
             if (response.ok) {
                 onCancelar(reserva.id);
+                toast.success('Reserva cancelada exitosamente', {
+                    position: toast.POSITION.TOP_CENTER
+                });
+            } else {
+                toast.error('Error al cancelar la reserva', {
+                    position: toast.POSITION.TOP_CENTER
+                });
             }
         } catch (error) {
             console.error('Error al cancelar la reserva:', error);
+            toast.error('Error al cancelar la reserva', {
+                position: toast.POSITION.TOP_CENTER
+            });
         } finally {
             setIsLoading(false);
         }
