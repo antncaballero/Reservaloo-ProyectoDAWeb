@@ -37,13 +37,9 @@ const ReservaCard = ({ reserva, onCancelar }) => {
             });
             if (response.ok) {
                 onCancelar(reserva.id);
-                toast.success('Reserva cancelada exitosamente', {
-                    position: toast.POSITION.TOP_CENTER
-                });
+                toast.success('Reserva cancelada con éxito');
             } else {
-                toast.error('Error al cancelar la reserva', {
-                    position: toast.POSITION.TOP_CENTER
-                });
+                toast.error('Error al cancelar la reserva')
             }
         } catch (error) {
             console.error('Error al cancelar la reserva:', error);
