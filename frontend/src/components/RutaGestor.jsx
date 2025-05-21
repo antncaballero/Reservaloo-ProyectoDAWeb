@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import GestorLayout from './layouts/GestorLayout';
 
 
 // La flag requireGestor es para que solo los gestores puedan acceder a la ruta
@@ -20,5 +21,9 @@ export function RutaGestor({ children }) {
         return <Navigate to="/" />;
     }
 
-    return children;
+    return (
+        <GestorLayout>
+            {children}
+        </GestorLayout>
+    )
 } 

@@ -9,6 +9,7 @@ import GestorLayout from './components/layouts/GestorLayout';
 import HomeUsuario from './pages/usuario/HomeUsuario';
 import HomeGestor from './pages/gestor/HomeGestor';
 import Eventos from './pages/usuario/Eventos';
+import Evento from './pages/usuario/Evento';
 import Espacios from './pages/usuario/Espacios';
 import GestionEventos from './pages/gestor/GestionEventos';
 import GestionEspacios from './pages/gestor/GestionEspacios';
@@ -26,66 +27,53 @@ function App() {
           {/* Rutas protegidas para usuarios normales */}
           <Route path="/" element={
             <RutaUsuario>
-              <UserLayout>
-                <HomeUsuario />
-              </UserLayout>
+              <HomeUsuario />
             </RutaUsuario>
           } />
           <Route path="/eventos" element={
             <RutaUsuario>
-              <UserLayout>
-                <Eventos/>
-              </UserLayout>
+              <Eventos/>
+            </RutaUsuario>
+          } />
+          <Route path="/eventos/:id" element={
+            <RutaUsuario>
+              <Evento />
             </RutaUsuario>
           } />
           <Route path="/espacios" element={
             <RutaUsuario>
-              <UserLayout>
-                <Espacios />
-              </UserLayout>
+              <Espacios />
             </RutaUsuario>
           } />
           <Route path="/reservas" element={
             <RutaUsuario>
-              <UserLayout>
-                <Reservas />
-              </UserLayout>
+              <Reservas />
             </RutaUsuario>
           } />
           {/* Rutas protegidas solo para gestores */}
           <Route path="/gestor" element={
             <RutaGestor>
-              <GestorLayout>
-                <HomeGestor />
-              </GestorLayout>
+              <HomeGestor />
             </RutaGestor>
           } />
           <Route path="/gestion/eventos" element={
             <RutaGestor>
-              <GestorLayout>
-                <GestionEventos />
-              </GestorLayout>
+              <GestionEventos />
             </RutaGestor>
           } />
           <Route path="/gestion/espacios" element={
             <RutaGestor>
-              <GestorLayout>
-                <GestionEspacios />
-              </GestorLayout>
+              <GestionEspacios />
             </RutaGestor>
           } />
           <Route path="/espacios/crear" element={
             <RutaGestor>
-              <GestorLayout>
-                <CrearEspacio />
-              </GestorLayout>
+              <CrearEspacio />
             </RutaGestor>
           } />
           <Route path="/espacios/actualizar/:id" element={
             <RutaGestor>
-              <GestorLayout>
-                <ActualizarEspacio />
-              </GestorLayout>
+              <ActualizarEspacio />
             </RutaGestor>
           } />
           

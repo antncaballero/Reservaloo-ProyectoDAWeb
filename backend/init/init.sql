@@ -3,8 +3,9 @@
 -- DROP TABLE IF EXISTS eventos;
 -- DROP TABLE IF EXISTS espacios;
 -- DROP TABLE IF EXISTS usuarios;
-
 -- Tabla usuarios
+SET NAMES utf8mb4;
+
 CREATE TABLE IF NOT EXISTS usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(100),

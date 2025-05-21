@@ -65,5 +65,43 @@ export class ReservaController {
             console.error('Error deleting reserva:', error);
             res.status(500).send('Error al eliminar la reserva de la base de datos');
         }
+    }    
+    
+    static async createReserva(req, res) {
+        try {
+            const { evento_id, user_id, cantidad } = req.body;
+            
+            // Validar datos de entrada
+            if (!evento_id || !user_id || !cantidad || cantidad <= 0) {
+                return res.status(400).json({ 
+                    mensaje: 'Datos incompletos o inválidos para la reserva' 
+                });
+            }
+
+            // Verificar disponibilidad usando el método del modelo de Reserva
+            const disponibilidad = await Reserva.verificarDisponibilidadReserva(evento_id, cantidad);
+            
+            if (!disponibilidad.disponible) {
+                return res.status(400).json({ mensaje: disponibilidad.mensaje });
+            }
+            
+            // Crear la reserva
+            const reservaData = {
+                usuario_id: user_id,
+                evento_id,
+                cantidad
+            };
+            
+            const nuevaReserva = await Reserva.createReserva(reservaData);
+            
+            res.status(201).json({
+                mensaje: 'Reserva creada correctamente',
+                reserva: nuevaReserva
+            });
+            
+        } catch (error) {
+            console.error('Error al crear reserva:', error);
+            res.status(500).json({ mensaje: 'Error al crear la reserva' });
+        }
     }
 }

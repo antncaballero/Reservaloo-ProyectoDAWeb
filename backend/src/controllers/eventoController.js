@@ -54,10 +54,10 @@ export const EventoController = {
         }
     },
 
-    async getEventosByCategoria(req, res) {
+    async getEventosSimilaresByCategoria(req, res) {
         const categoria = req.params.categoria;
         try {
-            const eventos = await Evento.getEventosByCategoria(categoria);
+            const eventos = await Evento.getEventosSimilaresByCategoria(categoria);
             res.status(200).json(eventos);
         } catch (error) {
             console.error('Error fetching eventos:', error);

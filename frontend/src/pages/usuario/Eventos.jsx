@@ -1,4 +1,3 @@
-import React from "react";
 import EventoCardUsuario from "../../components/Usuario/EventoCardUsuario";
 import useFilterEvents from "../../hooks/UseFilterEvents";
 
@@ -82,14 +81,29 @@ const Eventos = () => {
               className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
               min="0"             
             />
-          </div>
-
-          {/* Botón de filtro */}
-          <div className="flex items-end justify-start">
+          </div>          {/* Botones de control */}
+          <div className="flex items-end justify-start gap-3">
             <button type="submit"
               className="bg-white text-primary px-4 py-2 rounded-md font-semibold hover:bg-gray-200 transition-colors cursor-pointer"
             >
               Filtrar eventos
+            </button>
+            <button type="button"
+              onClick={() => {
+                // Reiniciar filtros pero manteniendo la fecha actual
+                setFiltros({
+                  categoria: '',
+                  fecha_inicio: '',
+                  nombre: '',
+                  nombre_espacio: '',
+                  plazas_minimas: ''
+                });
+                // Aplicar filtros vacíos para mostrar todos los eventos
+                cargarEventos({});
+              }}
+              className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md font-semibold hover:bg-gray-300 transition-colors cursor-pointer"
+            >
+              Limpiar filtros
             </button>
           </div>
         </form>

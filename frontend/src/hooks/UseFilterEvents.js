@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { fetchWithAuth } from '../api/api';
 
 export default function useFilterEvents() {
+    const fechaActual = new Date().toISOString().split('T')[0];
+    
     const [eventos, setEventos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [filtros, setFiltros] = useState({
         categoria: '',
-        fecha_inicio: '',
+        fecha_inicio: fechaActual, // Inicializamos con la fecha actual
         nombre: '',
         nombre_espacio: '',
         plazas_minimas: ''
@@ -32,10 +34,9 @@ export default function useFilterEvents() {
         } finally {
             setLoading(false);
         }
-    };
-
-    useEffect(() => {
-        cargarEventos();
+    };    useEffect(() => {
+        // Al cargar por primera vez, aplicamos el filtro por fecha actual
+        cargarEventos(filtros);
     }, []);
 
     return { eventos, loading, error, filtros, setFiltros, cargarEventos };

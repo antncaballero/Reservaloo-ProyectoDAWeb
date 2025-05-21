@@ -8,5 +8,6 @@ router.get('/:id', ReservaController.getReservaById);
 router.get('/evento/:eventoId', ReservaController.getReservasByEvento);
 router.get('/usuario/:usuarioId', ReservaController.getReservasByUsuario);
 router.delete('/:id', ReservaController.deleteReserva);
+router.post('/', ReservaController.createReserva);
 
 export default router;

@@ -1,18 +1,40 @@
 import { db } from '../../config/db.js';
 
-export class Evento {
-   static async getAllEventos() {
-      const [rows] = await db.query('SELECT * FROM eventos');
+export class Evento {   static async getAllEventos() {
+      const [rows] = await db.query(`
+         SELECT e.*, es.nombre as nombre_espacio, 
+         (e.plazas - COALESCE(SUM(r.cantidad), 0)) as plazas_disponibles
+         FROM eventos e
+         LEFT JOIN espacios es ON e.espacio_id = es.id
+         LEFT JOIN reservas r ON e.id = r.evento_id
+         GROUP BY e.id
+      `);
       return rows;
-   }
-
-   static async getEventoById(id) {
-      const [rows] = await db.query('SELECT * FROM eventos WHERE id = ?', [id]);
+   }static async getEventoById(id) {
+      const [rows] = await db.query(
+         `SELECT e.*, es.nombre as nombre_espacio, es.direccion as direccion_espacio,
+          (e.plazas - COALESCE(SUM(r.cantidad), 0)) as plazas_disponibles
+          FROM eventos e
+          LEFT JOIN espacios es ON e.espacio_id = es.id
+          LEFT JOIN reservas r ON e.id = r.evento_id
+          WHERE e.id = ?
+          GROUP BY e.id`,
+         [id]
+      );
       return rows[0];
-   }
-
-   static async getEventosByCategoria(categoria) {
-      const [rows] = await db.query('SELECT * FROM eventos WHERE categoria = ?', [categoria]);
+   }   static async getEventosSimilaresByCategoria(categoria) {
+      const [rows] = await db.query(
+         `SELECT e.*, es.nombre as nombre_espacio, 
+          (e.plazas - COALESCE(SUM(r.cantidad), 0)) as plazas_disponibles
+          FROM eventos e
+          LEFT JOIN espacios es ON e.espacio_id = es.id
+          LEFT JOIN reservas r ON e.id = r.evento_id
+          WHERE e.categoria = ? AND e.fecha_inicio > NOW()
+          GROUP BY e.id
+          ORDER BY e.fecha_inicio ASC
+          LIMIT 3`,
+         [categoria]
+      );
       return rows;
    }
 
@@ -46,9 +68,7 @@ export class Evento {
       if (filtros.nombre_espacio) {
          query += ' AND es.nombre LIKE ?';
          params.push(`%${filtros.nombre_espacio}%`);
-      }
-
-      if (filtros.plazas_minimas) {
+      }      if (filtros.plazas_minimas) {
          query += ' GROUP BY e.id HAVING plazas_disponibles >= ?';
          params.push(filtros.plazas_minimas);
       } else {

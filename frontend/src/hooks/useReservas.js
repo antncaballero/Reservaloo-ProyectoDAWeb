@@ -17,14 +17,13 @@ const useReservas = (id) => {
 
     useEffect(() => {
         cargarReservas();
-    }, []);
+    }, [id]);
 
     return {
         reservas,
         setReservas,
         filtro,
-        setFiltro,
-        cargarReservas
+        setFiltro
     };
 }
 
