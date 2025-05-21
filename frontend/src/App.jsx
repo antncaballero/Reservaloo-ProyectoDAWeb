@@ -8,16 +8,17 @@ import GestorLayout from './components/layouts/GestorLayout';
 // Páginas
 import HomeUsuario from './pages/usuario/HomeUsuario';
 import HomeGestor from './pages/gestor/HomeGestor';
-import Eventos from './pages/usuario/Eventos';
+import EventosUsuario from './pages/usuario/EventosUsuario';
 import Evento from './pages/usuario/Evento';
 import Espacios from './pages/usuario/Espacios';
-import GestionEventos from './pages/gestor/GestionEventos';
 import GestionEspacios from './pages/gestor/GestionEspacios';
 import RutaDefault from './pages/RutaDefault';
 import Footer from './components/layouts/Footer';
 import CrearEspacio from './pages/gestor/CrearEspacio';
 import ActualizarEspacio from './pages/gestor/ActualizarEspacio';
 import Reservas from './pages/usuario/Reservas';
+import EventosGestor from './pages/gestor/EventosGestor';
+import CrearEvento from './pages/gestor/CrearEvento';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           } />
           <Route path="/eventos" element={
             <RutaUsuario>
-              <Eventos/>
+              <EventosUsuario/>
             </RutaUsuario>
           } />
           <Route path="/eventos/:id" element={
@@ -58,7 +59,7 @@ function App() {
           } />
           <Route path="/gestion/eventos" element={
             <RutaGestor>
-              <GestionEventos />
+              <EventosGestor />
             </RutaGestor>
           } />
           <Route path="/gestion/espacios" element={
@@ -76,7 +77,12 @@ function App() {
               <ActualizarEspacio />
             </RutaGestor>
           } />
-          
+          <Route path="/eventos/crear" element={
+            <RutaGestor>
+              <CrearEvento />
+            </RutaGestor>
+          } />
+          {/* Rutas para layouts */}
           {/* Ruta por defecto */}
           <Route path="*" element={
               <div className="flex flex-col h-screen justify-between">

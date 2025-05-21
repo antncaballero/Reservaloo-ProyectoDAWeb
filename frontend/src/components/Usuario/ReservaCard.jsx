@@ -43,9 +43,7 @@ const ReservaCard = ({ reserva, onCancelar }) => {
             }
         } catch (error) {
             console.error('Error al cancelar la reserva:', error);
-            toast.error('Error al cancelar la reserva', {
-                position: toast.POSITION.TOP_CENTER
-            });
+            toast.error('Error al cancelar la reserva');
         } finally {
             setIsLoading(false);
         }

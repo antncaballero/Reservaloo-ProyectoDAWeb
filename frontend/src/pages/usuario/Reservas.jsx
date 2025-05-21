@@ -24,7 +24,7 @@ export default function Reservas() {
             {/* Sección de filtro */}
             <ToastContainer />
             <section className="mb-8 flex flex-col justify-between items-center gap-4">
-                <h1 className="text-4xl font-bold mb-4 text-center md:text-left">Mis Reservas</h1>
+                <h1 className="text-4xl font-bold mb-4 text-center md:text-left bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">Gestiona tus reservas</h1>
                 <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-4">
                     <div className="flex gap-4 w-full md:w-auto justify-center">
                         <button

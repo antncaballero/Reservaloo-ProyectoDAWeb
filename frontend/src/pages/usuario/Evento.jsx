@@ -42,7 +42,7 @@ const Evento = () => {
   return (
     <div className="container mx-auto px-4 mt-22 ">
       <ToastContainer position="top-center" theme="dark" />
-      <h1 className="text-4xl font-bold text-white mb-6 text-center"> {evento.nombre} </h1>
+      <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent mb-6 text-center"> {evento.nombre} </h1>
       {/* Contenedor principal */}
       <div className="flex flex-col md:flex-row gap-8 mb-12">
         {/* Imagen del evento (Aside izquierdo) */}

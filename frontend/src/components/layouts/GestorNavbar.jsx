@@ -25,6 +25,9 @@ export default function GestorNavbar() {
                         <Link to="/gestion/espacios" className="hover:text-secondary transition-colors">
                             Gestionar Espacios
                         </Link>
+                        <Link to="/eventos/crear" className="hover:text-secondary transition-colors">
+                            Crear Evento
+                        </Link>
                     </div>
 
                     {/* Perfil y logout en desktop */}
@@ -58,6 +61,9 @@ export default function GestorNavbar() {
                     </Link>
                     <Link to="/gestion/espacios" className="block hover:text-secondary" onClick={() => setOpen(false)}>
                         Gestionar Espacios
+                    </Link>
+                    <Link to="/eventos/crear" className="block hover:text-secondary" onClick={() => setOpen(false)}>
+                        Crear Evento
                     </Link>
                     <button onClick={logout} className="bg-red-600 hover:bg-red-700 px-4 py-2 mt-2 mb-4 rounded transition-colors cursor-pointer" >
                         Cerrar sesión
