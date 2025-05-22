@@ -1,0 +1,149 @@
+/* Estilos para la página de eventos */
+
+.eventos-container { 
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.eventos-header {
+  margin-top: 6rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.eventos-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, white, #ffd700);
+  background-clip: text;
+  color: transparent;
+}
+
+.filtros-section {
+  margin: 0 auto 0 auto;
+  max-width: 1100px;
+  padding: 1.5rem;
+}
+
+.filtros-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .filtros-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .filtros-form {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.form-input,
+.form-select {
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.375rem;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 0 1px #ffd700;
+}
+
+.form-select option {
+  color: #283593;
+  font-weight: 500;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 0.75rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background-color: white;
+  color: #283593;
+}
+
+.btn-primary:hover {
+  background-color: #e5e7eb;
+}
+
+.btn-secondary {
+  background-color: #e5e7eb;
+  color: #4b5563;
+}
+
+.btn-secondary:hover {
+  background-color: #d1d5db;
+}
+
+.eventos-loading {
+  text-align: center;
+}
+
+.eventos-loading-text {
+  font-size: 1.25rem;
+}
+
+.eventos-error {
+  color: #ef4444;
+  text-align: center;
+}
+
+.eventos-count {
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.eventos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+}
+
+@media (min-width: 1024px) {
+  .eventos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .eventos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.evento-card-wrapper {
+  margin-bottom: 2rem;
+}

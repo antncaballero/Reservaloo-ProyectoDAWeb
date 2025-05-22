@@ -3,9 +3,6 @@ import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import GestorLayout from './layouts/GestorLayout';
 
-
-// La flag requireGestor es para que solo los gestores puedan acceder a la ruta
-// Se podría crear otro componente para rutas de gestores, pero no es necesario por ahora
 export function RutaGestor({ children }) {
     const { user, loading } = useContext(AuthContext);
 
@@ -17,6 +14,7 @@ export function RutaGestor({ children }) {
         window.location.href = 'http://localhost:3000/auth/login';
     }
 
+    // Se redirige a la página de usuario normal si el usuario no es un gestor, ya que solo hay dos roles
     if (user.rol !== 'gestor') {
         return <Navigate to="/" />;
     }

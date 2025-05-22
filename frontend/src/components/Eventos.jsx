@@ -1,3 +1,5 @@
+import '../assets/css/Eventos.css';
+
 const categorias = ["ACADEMICOS", "CULTURALES", "ENTRETENIMIENTO", "DEPORTES", "OTROS"];
 
 const Eventos = ({
@@ -34,22 +36,22 @@ const Eventos = ({
   };
 
   return (
-    <>
-      <header>
-        <h1 className="text-center text-4xl font-bold mb-4 mt-24 bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
+    <div className="eventos-container">
+      <header className="eventos-header">
+        <h1 className='eventos-title'>
           Eventos de Reservaloo
         </h1>
       </header>
 
       {/* Filtros */}
-      <section className="max-w-6xl mx-auto rounded-lg p-6">
+      <section className="filtros-section">
         <form
           onSubmit={handleSubmit}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="filtros-form"
         >
           {/* Nombre */}
-          <div className="flex flex-col">
-            <label className="text-sm font-medium mb-1" htmlFor="nombre">
+          <div className="form-group">
+            <label className="form-label" htmlFor="nombre">
               Nombre
             </label>
             <input
@@ -58,13 +60,13 @@ const Eventos = ({
               name="nombre"
               value={filtros.nombre}
               onChange={handleInputChange}
-              className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
+              className="form-input"
             />
           </div>
 
           {/* Categoría */}
-          <div className="flex flex-col">
-            <label className="text-sm font-medium mb-1" htmlFor="categoria">
+          <div className="form-group">
+            <label className="form-label" htmlFor="categoria">
               Categoría
             </label>
             <select
@@ -72,11 +74,11 @@ const Eventos = ({
               name="categoria"
               value={filtros.categoria}
               onChange={handleInputChange}
-              className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
+              className="form-select"
             >
-              <option value="" className="text-primary font-medium">Cualquiera</option>
+              <option value="">Cualquiera</option>
               {categorias.map((cat) => (
-                <option key={cat} value={cat} className="text-primary font-medium">
+                <option key={cat} value={cat}>
                   {cat.charAt(0) + cat.slice(1).toLowerCase()}
                 </option>
               ))}
@@ -84,8 +86,8 @@ const Eventos = ({
           </div>
 
           {/* Fecha */}
-          <div className="flex flex-col">
-            <label className="text-sm font-medium mb-1" htmlFor="fecha_inicio">
+          <div className="form-group">
+            <label className="form-label" htmlFor="fecha_inicio">
               A partir de
             </label>
             <input
@@ -94,14 +96,14 @@ const Eventos = ({
               name="fecha_inicio"
               value={filtros.fecha_inicio}
               onChange={handleInputChange}
-              className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
+              className="form-input"
             />
           </div>
 
           {/* Nombre espacio */}
-          <div className="flex flex-col">
+          <div className="form-group">
             <label
-              className="text-sm font-medium mb-1"
+              className="form-label"
               htmlFor="nombre_espacio"
             >
               Nombre del espacio
@@ -112,14 +114,14 @@ const Eventos = ({
               name="nombre_espacio"
               value={filtros.nombre_espacio}
               onChange={handleInputChange}
-              className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
+              className="form-input"
             />
           </div>
 
           {/* Plazas */}
-          <div className="flex flex-col">
+          <div className="form-group">
             <label
-              className="text-sm font-medium mb-1"
+              className="form-label"
               htmlFor="plazas_minimas"
             >
               Plazas disponibles (mínimas)
@@ -130,23 +132,23 @@ const Eventos = ({
               name="plazas_minimas"
               value={filtros.plazas_minimas}
               onChange={handleInputChange}
-              className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
+              className="form-input"
               min="0"
             />
           </div>
 
           {/* Botones */}
-          <div className="flex items-end justify-start gap-3">
+          <div className="buttons-container">
             <button
               type="submit"
-              className="bg-white text-primary px-4 py-2 rounded-md font-semibold hover:bg-gray-200 transition-colors cursor-pointer"
+              className="btn btn-primary"
             >
               Filtrar eventos
             </button>
             <button
               type="button"
               onClick={limpiarFiltros}
-              className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md font-semibold hover:bg-gray-300 transition-colors cursor-pointer"
+              className="btn btn-secondary"
             >
               Limpiar filtros
             </button>
@@ -157,19 +159,19 @@ const Eventos = ({
       {/* Lista de eventos */}
       <section>
         {loading ? (
-          <div className="text-center">
-            <p className="text-xl">Cargando eventos...</p>
+          <div className="eventos-loading">
+            <p className="eventos-loading-text">Cargando eventos...</p>
           </div>
         ) : error ? (
-          <div className="text-red-700 text-center">{error}</div>
+          <div className="eventos-error">{error}</div>
         ) : (
           <>
-            <p className="text-center text-lg font-semibold mb-6">
+            <p className="eventos-count">
               Eventos encontrados: {eventos.length}
             </p>
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 place-items-center">
+            <div className="eventos-grid">
               {eventos.map((evento) => (
-                <div key={evento.id} className="mb-8">
+                <div key={evento.id} className="evento-card-wrapper">
                   <CardComponent evento={evento} />
                 </div>
               ))}
@@ -177,7 +179,7 @@ const Eventos = ({
           </>
         )}
       </section>
-    </>
+    </div>
   );
 };
 

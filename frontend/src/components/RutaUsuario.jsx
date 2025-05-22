@@ -3,9 +3,6 @@ import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import UserLayout from './layouts/UserLayout';
 
-
-// La flag requireGestor es para que solo los gestores puedan acceder a la ruta
-// Se podría crear otro componente para rutas de gestores, pero no es necesario por ahora
 export function RutaUsuario({ children }) {
     const { user, loading } = useContext(AuthContext);
 
