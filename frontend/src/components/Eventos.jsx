@@ -1,5 +1,6 @@
+const categorias = ["ACADEMICOS", "CULTURALES", "ENTRETENIMIENTO", "DEPORTES", "OTROS"];
+
 const Eventos = ({
-  categorias,
   filtros,
   setFiltros,
   cargarEventos,
@@ -34,9 +35,11 @@ const Eventos = ({
 
   return (
     <>
-      <h1 className="text-center text-4xl font-bold mb-4 mt-22 bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
-        Eventos de Reservaloo
-      </h1>
+      <header>
+        <h1 className="text-center text-4xl font-bold mb-4 mt-24 bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
+          Eventos de Reservaloo
+        </h1>
+      </header>
 
       {/* Filtros */}
       <section className="max-w-6xl mx-auto rounded-lg p-6">
@@ -71,9 +74,9 @@ const Eventos = ({
               onChange={handleInputChange}
               className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
             >
-              <option value="">Cualquiera</option>
+              <option value="" className="text-primary font-medium">Cualquiera</option>
               {categorias.map((cat) => (
-                <option key={cat} value={cat}>
+                <option key={cat} value={cat} className="text-primary font-medium">
                   {cat.charAt(0) + cat.slice(1).toLowerCase()}
                 </option>
               ))}

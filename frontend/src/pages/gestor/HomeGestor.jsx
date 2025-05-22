@@ -1,33 +1,106 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
+import { 
+    SparklesIcon, 
+    CalendarIcon, 
+    ChartBarIcon, 
+    BuildingOffice2Icon, 
+    PlusCircleIcon, 
+    RectangleGroupIcon
+} from '@heroicons/react/24/outline';
 
 export default function HomeGestor() {
     const { user } = useContext(AuthContext);
+    const currentDate = new Date();
+    const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    const month = monthNames[currentDate.getMonth()];
+    const day = currentDate.getDate();
+    const year = currentDate.getFullYear();
 
     return (
-        <div className="container mx-auto mt-22">
-            <h1 className="text-3xl font-bold mb-6">¡Bienvenido, {user?.nombre}!</h1>
-            
-            <div className="max-w-3xl">
-                <p className="text-lg mb-4">
-                    Como gestor del sistema, puedes:
-                </p>
-                
-                <ul className="list-disc pl-8 text-lg space-y-2 mb-8">
-                    <li>Crear y gestionar eventos</li>
-                    <li>Administrar espacios y ubicaciones</li>
-                    <li>Revisar y aprobar reservas</li>
-                    <li>Gestionar usuarios y permisos</li>
-                </ul>
-
-                <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
-                    <h2 className="text-2xl font-bold mb-4">Panel de Control</h2>
-                    <p className="text-gray-200">
-                        Utiliza el menú de navegación para acceder a las diferentes 
-                        secciones de gestión y administración del sistema.
-                    </p>
+        <div className="container mx-auto px-4 py-8 mt-16">
+            {/* Header con saludo y fecha */}
+            <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                <h1 className="text-3xl md:text-4xl font-bold mb-3 md:mb-0 bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
+                    ¡Hola, {user?.nombre}!
+                </h1>
+                <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg">
+                    <p className="text-white font-medium">{day} de {month}, {year}</p>
                 </div>
-            </div>
+            </header>
+            
+            {/* Bento Grid */}
+            <article className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                {/* Bloque principal - Panel de Control */}
+                <section className="md:col-span-2 bg-gradient-to-br from-[#3f51b5]/80 to-[#283593]/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-2xl font-bold text-white">Panel de Control de Gestor</h2>
+                        <SparklesIcon className="h-8 w-8 text-yellow-300" />
+                    </div>
+                    <p className="text-lg text-white mb-4">
+                        Bienvenido a tu panel de administración donde podrás gestionar todos los recursos del sistema.
+                    </p>
+                    <div className="grid grid-cols-2 gap-3 mt-6">
+                        <Link to="/gestion/eventos" className="flex items-center p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                            <CalendarIcon className="h-5 w-5 mr-2 text-yellow-300" />
+                            <span>Gestionar Eventos</span>
+                        </Link>
+                        <Link to="/gestion/espacios" className="flex items-center p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                            <BuildingOffice2Icon className="h-5 w-5 mr-2 text-yellow-300" />
+                            <span>Gestionar Espacios</span>
+                        </Link>
+                    </div>
+                </section>
+
+                {/* Bloque Crear Espacio */}
+                <section className="bg-gradient-to-br from-[#ff7043]/90 to-[#ff5722]/80 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl flex flex-col justify-between">
+                    <div>                        
+                        <div className="flex items-center justify-between mb-4">
+                            <h2 className="text-xl font-bold text-white">Crear Espacio</h2>
+                            <PlusCircleIcon className="h-6 w-6 text-white" />
+                        </div>
+                        <p className="text-white">Añade nuevos espacios para que los usuarios puedan reservarlos.</p>
+                    </div>
+                    <Link to="/espacios/crear" className="mt-4 bg-white/20 py-2 px-4 rounded-lg text-center hover:bg-white/30 transition-colors">
+                        Crear nuevo
+                    </Link>
+                </section>
+
+                {/* Bloque de estadísticas */}
+                <section className="bg-gradient-to-br from-[#4caf50]/80 to-[#388e3c]/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-xl font-bold text-white">Estadísticas</h2>
+                        <ChartBarIcon className="h-6 w-6 text-white" />
+                    </div>
+                    <div className="space-y-3">
+                        <div className="flex justify-between items-center">
+                            <span className="text-white">Eventos activos</span>
+                            <span className="bg-white/20 px-2 py-1 rounded-md text-white font-medium">30+</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                            <span className="text-white">Espacios disponibles</span>
+                            <span className="bg-white/20 px-2 py-1 rounded-md text-white font-medium">15+</span>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Bloque crear evento */}
+                <section className="md:col-span-2 bg-gradient-to-br from-[#7e57c2]/80 to-[#673ab7]/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-xl font-bold text-white">Crear Evento</h2>
+                        <RectangleGroupIcon className="h-6 w-6 text-yellow-300" />
+                    </div>
+                    <p className="text-white mb-3">
+                        Desde la sección de gestión de espacios podrás crear eventos asociados a cada uno de los espacios,
+                        configurar sus características y mantener actualizada la información.
+                    </p>
+                    <Link to="/gestion/espacios" className="inline-block mt-2 bg-white/20 py-2 px-4 rounded-lg hover:bg-white/30 transition-colors">
+                        Administrar espacios
+                    </Link>
+                </section>
+            </article>
         </div>
     );
 }

@@ -9,7 +9,6 @@ const EventosGestor = () => {
 
   return (
     <EventosConFiltros
-      categorias={categorias}
       eventos={eventos}
       loading={loading}
       error={error}

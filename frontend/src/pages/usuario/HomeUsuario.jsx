@@ -19,7 +19,7 @@ export default function HomeUsuario() {
     const year = currentDate.getFullYear();
 
     return (
-        <div className="container mx-auto px-4 py-8 mt-22">
+        <div className="container mx-auto px-4 py-8 mt-16">
             {/* Header con saludo y fecha */}
             <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
                 <h1 className="text-3xl md:text-4xl font-bold mb-3 md:mb-0 bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">

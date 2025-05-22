@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 const EspacioCardGestor = ({ espacio }) => {
@@ -37,7 +36,7 @@ const EspacioCardGestor = ({ espacio }) => {
                         to={`/espacios/${espacio.id}`}
                         className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors flex-1 text-center"
                     >
-                        Ir al espacio
+                        Crear evento
                     </Link>
                     <Link 
                         to={`/espacios/actualizar/${espacio.id}`}

@@ -71,11 +71,15 @@ const CrearEspacio = () => {
     };
 
     return (
-        <div className="max-w-3xl mx-auto px-4 py-8 mt-22">
+        <>
             <ToastContainer />
-            <h1 className="text-4xl font-bold mb-8">Crear nuevo Espacio</h1>
+            <header className='mt-24'>
+                <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
+                    Crear nuevo Espacio
+                </h1>
+            </header>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl mx-auto px-4">
                 {/* Nombre */}
                 <div className="flex flex-col">
                     <label className="text-sm font-medium mb-1" htmlFor="nombre">
@@ -140,8 +144,8 @@ const CrearEspacio = () => {
                             required
                             className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
                         >
-                            <option value="ACTIVO">Activo</option>
-                            <option value="CERRADO">Cerrado</option>
+                            <option value="ACTIVO" className='text-primary'>Activo</option>
+                            <option value="CERRADO" className='text-primary'>Cerrado</option>
                         </select>
                     </div>
                 </div>
@@ -217,7 +221,7 @@ const CrearEspacio = () => {
                     </button>
                 </div>
             </form>
-        </div>
+        </>
     );
 };
 

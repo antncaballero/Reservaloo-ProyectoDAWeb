@@ -2,15 +2,14 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { RutaGestor } from './components/RutaGestor';
 import { RutaUsuario } from './components/RutaUsuario';
-import UserLayout from './components/layouts/UserLayout';
-import GestorLayout from './components/layouts/GestorLayout';
+
 
 // Páginas
 import HomeUsuario from './pages/usuario/HomeUsuario';
 import HomeGestor from './pages/gestor/HomeGestor';
 import EventosUsuario from './pages/usuario/EventosUsuario';
 import Evento from './pages/usuario/Evento';
-import Espacios from './pages/usuario/Espacios';
+import EspaciosUsuario from './pages/usuario/EspaciosUsuario';
 import GestionEspacios from './pages/gestor/GestionEspacios';
 import RutaDefault from './pages/RutaDefault';
 import Footer from './components/layouts/Footer';
@@ -43,7 +42,7 @@ function App() {
           } />
           <Route path="/espacios" element={
             <RutaUsuario>
-              <Espacios />
+              <EspaciosUsuario />
             </RutaUsuario>
           } />
           <Route path="/reservas" element={
