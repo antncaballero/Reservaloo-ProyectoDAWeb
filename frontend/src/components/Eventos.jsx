@@ -1,7 +1,4 @@
-import '../assets/css/Eventos.css';
-
-const categorias = ["ACADEMICOS", "CULTURALES", "ENTRETENIMIENTO", "DEPORTES", "OTROS"];
-
+import '../assets/css/EspaciosEventos.css';
 const Eventos = ({
   filtros,
   setFiltros,
@@ -11,6 +8,9 @@ const Eventos = ({
   error,
   CardComponent,
 }) => {
+  
+  const categorias = ["ACADEMICOS", "CULTURALES", "ENTRETENIMIENTO", "DEPORTES", "OTROS"];
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFiltros((prev) => ({
@@ -36,9 +36,9 @@ const Eventos = ({
   };
 
   return (
-    <div className="eventos-container">
-      <header className="eventos-header">
-        <h1 className='eventos-title'>
+    <div className="ev-container">
+      <header className="ev-header">
+        <h1 className='title'>
           Eventos de Reservaloo
         </h1>
       </header>
@@ -159,19 +159,19 @@ const Eventos = ({
       {/* Lista de eventos */}
       <section>
         {loading ? (
-          <div className="eventos-loading">
-            <p className="eventos-loading-text">Cargando eventos...</p>
+          <div className="loading">
+            <p className="loading-text">Cargando eventos...</p>
           </div>
         ) : error ? (
-          <div className="eventos-error">{error}</div>
+          <div className="error">{error}</div>
         ) : (
           <>
-            <p className="eventos-count">
+            <p className="count">
               Eventos encontrados: {eventos.length}
             </p>
-            <div className="eventos-grid">
+            <div className="cards-grid">
               {eventos.map((evento) => (
-                <div key={evento.id} className="evento-card-wrapper">
+                <div key={evento.id} className="card-wrapper">
                   <CardComponent evento={evento} />
                 </div>
               ))}

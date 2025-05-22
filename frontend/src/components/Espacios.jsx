@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import '../assets/css/EspaciosEventos.css';
 
 const Espacios = ({
     espacios,
@@ -24,33 +24,33 @@ const Espacios = ({
     cargarEspacios(filtros);
   };
   return (
-    <>      
-      <header className="mt-24 mb-4">
-        <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
+    <div className="ev-container">      
+      <header className="ev-header">
+        <h1 className="title">
           Espacios
         </h1>
       </header>
       
       {/* Sección de filtros */}
-      <section className="p-8 mx-auto max-w-6xl">
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="filtros-section">
+        <form onSubmit={handleSubmit} className="filtros-form">
           
           {/* Nombre */}
-          <div className="flex flex-col">
-            <label className="text-sm font-medium mb-1" htmlFor="nombre">Nombre</label>
+          <div className="form-group">
+            <label className="form-label" htmlFor="nombre">Nombre</label>
             <input 
               type="text" 
               id="nombre" 
               name="nombre" 
               value={filtros.nombre} 
               onChange={handleInputChange}
-              className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
+              className="form-input"
             />
           </div>
 
           {/* Capacidad mínima */}
-          <div className="flex flex-col">
-            <label className="text-sm font-medium mb-1" htmlFor="capacidad_minima">
+          <div className="form-group">
+            <label className="form-label" htmlFor="capacidad_minima">
               Capacidad mínima
             </label>
             <input 
@@ -60,23 +60,23 @@ const Espacios = ({
               value={filtros.capacidad_minima} 
               onChange={handleInputChange}
               min="0"
-              className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
+              className="form-input"
             />
           </div>
 
           {/* Estado */}
-          <div className="flex flex-col">
-            <label className="text-sm font-medium mb-1" htmlFor="estado">Estado</label>
+          <div className="form-group">
+            <label className="form-label" htmlFor="estado">Estado</label>
             <select 
               id="estado" 
               name="estado" 
               value={filtros.estado} 
               onChange={handleInputChange}
-              className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
+              className="form-select"
             >
-              <option value="" className="text-primary font-medium">Todos</option>
+              <option value="">Todos</option>
               {estados.map((estado) => (
-                <option key={estado} value={estado} className="text-primary font-medium">
+                <option key={estado} value={estado}>
                   {estado.charAt(0) + estado.slice(1).toLowerCase()}
                 </option>
               ))}
@@ -84,9 +84,10 @@ const Espacios = ({
           </div>
 
           {/* Botón de filtro */}
-          <div className="flex items-end justify-start">
+          <div className="buttons-container">
             <button 
-              type="submit" className="bg-white text-primary px-4 py-2 rounded-md font-semibold hover:bg-gray-200 transition-colors cursor-pointer"
+              type="submit" 
+              className="btn btn-primary"
             >
               Filtrar espacios
             </button>
@@ -94,20 +95,19 @@ const Espacios = ({
         </form>
       </section>
 
-      <section className="m">
+      <section>
         {loading ? (
-          <div className="text-center">
-            <p className="text-xl">Cargando espacios...</p>
+          <div className="loading">
+            <p className="loading-text">Cargando espacios...</p>
           </div>
         ) : error ? (
-          <div className="text-red-700 text-center">{error}</div>        
+          <div className="error">{error}</div>        
         ) : (
           <>
-            <p className="text-center text-lg font-semibold mb-6">Espacios encontrados: {espacios.length} </p>
-            {/* grid de espacios */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 place-items-center">
+            <p className="count">Espacios encontrados: {espacios.length}</p>
+            <div className="cards-grid">
               {espacios.map((espacio) => (
-                <div key={espacio.id} className="mb-8">
+                <div key={espacio.id} className="card-wrapper">
                   <CardEspacio espacio={espacio} />
                 </div>
               ))}
@@ -115,7 +115,7 @@ const Espacios = ({
           </>
         )}
       </section>
-    </>
+    </div>
   );
 };
 

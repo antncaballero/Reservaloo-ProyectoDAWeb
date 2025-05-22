@@ -1,17 +1,17 @@
 /* Estilos para la página de eventos */
 
-.eventos-container { 
+.ev-container { 
   margin: 0 auto;
   padding: 0 20px;
 }
 
-.eventos-header {
+.ev-header {
   margin-top: 6rem;
   margin-bottom: 1rem;
   text-align: center;
 }
 
-.eventos-title {
+.title {
   font-size: 2.5rem;
   font-weight: 700;
   background: linear-gradient(to right, white, #ffd700);
@@ -106,44 +106,44 @@
   background-color: #d1d5db;
 }
 
-.eventos-loading {
+.loading {
   text-align: center;
 }
 
-.eventos-loading-text {
+.loading-text {
   font-size: 1.25rem;
 }
 
-.eventos-error {
-  color: #ef4444;
+.error {
+  color: red;
   text-align: center;
 }
 
-.eventos-count {
+.count {
   text-align: center;
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
 
-.eventos-grid {
+.cards-grid {
   display: grid;
   grid-template-columns: 1fr;
   place-items: center;
 }
 
 @media (min-width: 1024px) {
-  .eventos-grid {
+  .cards-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 1280px) {
-  .eventos-grid {
+  .cards-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.evento-card-wrapper {
+.card-wrapper {
   margin-bottom: 2rem;
 }
