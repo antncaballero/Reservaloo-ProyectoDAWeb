@@ -8,6 +8,7 @@ router.get('/', EventoController.getAllEventos);
 router.get('/count', EventoController.countEventosFuturos);
 router.get('/filtrar', EventoController.filtrarEventos);
 router.get('/categoria/:categoria', EventoController.getEventosSimilaresByCategoria);
+router.get('/espacio/:espacioId', EventoController.getEventosByEspacioId);
 router.get('/:id', EventoController.getEventoById);
 router.post('/', verificarTokenGestor, EventoController.createEvento);
 router.put('/:id', verificarTokenGestor, EventoController.updateEvento);

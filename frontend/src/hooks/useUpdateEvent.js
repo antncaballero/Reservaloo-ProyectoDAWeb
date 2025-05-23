@@ -18,51 +18,59 @@ const useUpdateEvent = (id) => {
   });
   const [espacio, setEspacio] = useState(null);
 
-  useEffect(async () => {
-    try {
-      const response = await fetchWithAuth(`/eventos/${id}`, {
-        method: "GET",
-      });
-
-      if (!response.ok) {
-        throw new Error("No se pudo cargar el evento");
-      }
-
-      const data = await response.json();
-
-      // Convertir las fechas a formato local, el ISO no vale por el timezone
-      // y el formato de la fecha no es el correcto para el input de tipo date
-      const toLocalISOString = (dateString) => {
-        const date = new Date(dateString);
-        const pad = (n) => n.toString().padStart(2, "0");
-        return (date.getFullYear() + "-" + pad(date.getMonth() + 1) + "-" + pad(date.getDate()));
-      };
-
-      setFormData({
-        ...data,
-        fecha_inicio: toLocalISOString(data.fecha_inicio),
-        fecha_fin: toLocalISOString(data.fecha_fin),
-      });
-
-      // Cargar información del espacio
-      const espacioResponse = await fetchWithAuth(
-        `/espacios/${data.espacio_id}`,
-        {
+  useEffect(() => {
+    const fetchEvento = async () => {
+      try {
+        const response = await fetchWithAuth(`/eventos/${id}`, {
           method: "GET",
+        });
+
+        if (!response.ok) {
+          throw new Error("No se pudo cargar el evento");
         }
-      );
 
-      if (espacioResponse.ok) {
-        const espacioData = await espacioResponse.json();
-        setEspacio(espacioData);
+        const data = await response.json();
+
+        // Convertir las fechas a formato local para el input de tipo date
+        const toLocalISOString = (dateString) => {
+          const date = new Date(dateString);
+          const pad = (n) => n.toString().padStart(2, "0");
+          return (
+            date.getFullYear() +
+            "-" +
+            pad(date.getMonth() + 1) +
+            "-" +
+            pad(date.getDate())
+          );
+        };
+
+        setFormData({
+          ...data,
+          fecha_inicio: toLocalISOString(data.fecha_inicio),
+          fecha_fin: toLocalISOString(data.fecha_fin),
+        });
+
+        // Cargar información del espacio
+        const espacioResponse = await fetchWithAuth(
+          `/espacios/${data.espacio_id}`,
+          {
+            method: "GET",
+          }
+        );
+
+        if (espacioResponse.ok) {
+          const espacioData = await espacioResponse.json();
+          setEspacio(espacioData);
+        }
+
+        setLoading(false);
+      } catch (error) {
+        console.error("Error al cargar los datos del evento:", error);
+        setError("No se pudo cargar la información del evento");
+        setLoading(false);
       }
+    };
 
-      setLoading(false);
-    } catch (error) {
-      console.error("Error al cargar los datos del evento:", error);
-      setError("No se pudo cargar la información del evento");
-      setLoading(false);
-    }
     fetchEvento();
   }, [id]);
 

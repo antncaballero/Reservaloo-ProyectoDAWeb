@@ -41,7 +41,7 @@ const EspacioCardUsuario = ({ espacio }) => {
             </p>
           </div>
           <Link
-            to={`/espacios/actualizar/${espacio.id}`}
+            to={`/eventos/espacio/${espacio.id}`}
             className="bg-primary px-4 py-2 rounded-md hover:bg-secondary/80 hover:text-primary transition-colors text-center"
           >
             Ver eventos asociados

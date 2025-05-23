@@ -43,6 +43,21 @@ export class Evento {
       return rows;
    }
 
+   static async getEventosByEspacioId(espacioId) {
+      const [rows] = await db.query(
+         `SELECT e.*, es.nombre as nombre_espacio, 
+          (e.plazas - COALESCE(SUM(r.cantidad), 0)) as plazas_disponibles
+          FROM eventos e
+          LEFT JOIN espacios es ON e.espacio_id = es.id
+          LEFT JOIN reservas r ON e.id = r.evento_id
+          WHERE e.espacio_id = ? AND e.fecha_inicio >= CURDATE() AND e.cancelado = false
+          GROUP BY e.id
+          ORDER BY e.fecha_inicio ASC`,
+         [espacioId]
+      );
+      return rows;
+   }
+
    static async filtrarEventos(filtros) {
       let query = `
          SELECT e.*, es.nombre as nombre_espacio, es.direccion as direccion_espacio,

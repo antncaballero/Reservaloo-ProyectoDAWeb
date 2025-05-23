@@ -63,6 +63,21 @@ export const EventoController = {
         }
     },
     
+    async getEventosByEspacioId(req, res) {
+        const espacioId = req.params.espacioId;
+        try {
+            const eventos = await Evento.getEventosByEspacioId(espacioId);
+            console.log(eventos)
+            res.status(200).json(eventos);
+        } catch (error) {
+            console.error('Error fetching eventos por espacio:', error);
+            res.status(500).json({ 
+                mensaje: 'Error al obtener eventos del espacio',
+                error: error.message 
+            });
+        }
+    },
+    
     // Nuevo método para crear un evento
     async createEvento(req, res) {
         try {

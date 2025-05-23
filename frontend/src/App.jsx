@@ -19,6 +19,7 @@ import Reservas from './pages/usuario/Reservas';
 import EventosGestor from './pages/gestor/EventosGestor';
 import CrearEvento from './pages/gestor/CrearEvento';
 import ActualizarEvento from './pages/gestor/ActualizarEvento';
+import  EventosPorEspacio from './pages/usuario/EventosPorEspacio';
 
 function App() {
   // Definir rutas de usuario y gestor en arrays para mapearlas
@@ -28,6 +29,7 @@ function App() {
     { path: "/eventos/:id", element: <Evento /> },
     { path: "/espacios", element: <EspaciosUsuario /> },
     { path: "/reservas", element: <Reservas /> },
+    { path: "/eventos/espacio/:idEspacio", element: <EventosPorEspacio /> },
   ];
 
   const gestorRoutes = [

@@ -23,9 +23,7 @@ const useEvent = (id) => {
 
         // Obtener eventos similares de la misma categoría
         if (data.categoria) {
-          const similarResponse = await fetchWithAuth(
-            `/eventos/categoria/${data.categoria}`
-          );
+          const similarResponse = await fetchWithAuth(`/eventos/categoria/${data.categoria}`);
           if (similarResponse.ok) {
             const similarData = await similarResponse.json();
             // Filtrar el evento actual y limitar a 3 eventos similares
