@@ -3,7 +3,6 @@ import { EspacioController } from '../controllers/espacioController.js';
 var router = express.Router();
 import verificarTokenGestor from '../middlewares/verificarTokenGestor.js';
 
-/* GET espacios listing. */
 router.get('/', EspacioController.getEspaciosFiltrados); 
 router.get('/count', EspacioController.countEspaciosActivos);
 router.get('/:id', EspacioController.getEspacioById);

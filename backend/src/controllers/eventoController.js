@@ -67,7 +67,6 @@ export const EventoController = {
         const espacioId = req.params.espacioId;
         try {
             const eventos = await Evento.getEventosByEspacioId(espacioId);
-            console.log(eventos)
             res.status(200).json(eventos);
         } catch (error) {
             console.error('Error fetching eventos por espacio:', error);
@@ -329,7 +328,7 @@ export const EventoController = {
             
             if (eventosSolapadosFiltrados.length > 0) {
                 return res.status(400).json({
-                    mensaje: 'A los eventos cancelados solo se les puede actualizar dicho campo, y solo si no hay eventos programados en el mismo espacio para las fechas seleccionadas'
+                    mensaje: 'Hay otros eventos en estas fechas'
                 });
             }
             

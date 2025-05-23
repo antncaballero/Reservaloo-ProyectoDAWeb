@@ -6,6 +6,7 @@ import { fetchWithAuth } from "../../api/api";
 
 
 const ReservaModal = ({ isOpen, onClose, evento }) => {
+  Modal.setAppElement('#root');
   const [cantidadPlazas, setCantidadPlazas] = useState(1);
   const [reservando, setReservando] = useState(false);
   const { user } = useContext(AuthContext);
@@ -37,16 +38,26 @@ const ReservaModal = ({ isOpen, onClose, evento }) => {
       });  
       
       if (response.status === 201) {
-        toast.success(`Has reservado ${cantidadPlazas} plaza${cantidadPlazas > 1 ? 's' : ''} para el evento "${evento.nombre}"`);
+        toast.success(
+          `Has reservado ${cantidadPlazas} plaza${cantidadPlazas > 1 ? 's' : ''} para el evento "${evento.nombre}"`,
+          { style: { fontSize: '1rem', wordBreak: 'break-word', maxWidth: '90vw', margin: "20px" } }
+        );
         handleClose();
       } else if (response.status === 400) {
-        toast.error('No hay suficientesplazas disponibles para reservar.');
+        toast.error(
+          'No hay suficientes plazas disponibles para reservar.',
+          { style: { fontSize: '1rem', wordBreak: 'break-word', maxWidth: '90vw' } }
+        );
       } else {
-        toast.error('Error al realizar la reserva. Inténtalo de nuevo más tarde.');
+        toast.error(
+          'Error al realizar la reserva. Inténtalo de nuevo más tarde.',
+          { style: { fontSize: '1rem', wordBreak: 'break-word', maxWidth: '90vw' } }
+        );
       }
     
     } catch (error) {
-      toast.error('Error al reservar. Inténtalo de nuevo más tarde.');
+      toast.error('Error al reservar. Inténtalo de nuevo más tarde.'),
+        { style: { fontSize: '1rem', wordBreak: 'break-word', maxWidth: '90vw', margin: "20px" } };
       console.error('Error al reservar:', error);
     } finally {
       setReservando(false);

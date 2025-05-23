@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { RutaGestor } from './components/RutaGestor';
 import { RutaUsuario } from './components/RutaUsuario';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 // Páginas
@@ -19,7 +21,7 @@ import Reservas from './pages/usuario/Reservas';
 import EventosGestor from './pages/gestor/EventosGestor';
 import CrearEvento from './pages/gestor/CrearEvento';
 import ActualizarEvento from './pages/gestor/ActualizarEvento';
-import  EventosPorEspacio from './pages/usuario/EventosPorEspacio';
+import EventosPorEspacio from './pages/usuario/EventosPorEspacio';
 
 function App() {
   // Definir rutas de usuario y gestor en arrays para mapearlas
@@ -43,6 +45,15 @@ function App() {
   ];
 
   return (
+    <>
+    <ToastContainer 
+          toastStyle={{ 
+            fontSize: '1rem', 
+            wordBreak: 'break-word', 
+            maxWidth: '90vw',
+            margin: "10px" 
+          }}
+    />
     <AuthProvider>
       <BrowserRouter>
         <Routes>
@@ -75,6 +86,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
+    </>
   );
 }
 

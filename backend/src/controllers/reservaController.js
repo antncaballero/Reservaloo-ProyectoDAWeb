@@ -1,43 +1,36 @@
 import { Reserva } from '../models/reserva.js';
 
-export class ReservaController {
-    static async getAllReservas(req, res) {
-        try {
-            const reservas = await Reserva.getAllReservas();
-            res.status(200).json(reservas);
-        } catch (error) {
-            console.error('Error fetching reservas:', error);
-            res.status(500).send('Error fetching reservas from the database');
-        }
-    }
-    
-    static async getReservaById(req, res) {
+export class ReservaController {    static async getReservaById(req, res) {
         const reservaId = req.params.id;
         try {
             const reserva = await Reserva.getReservaById(reservaId);
             if (!reserva) {
                 return res.status(404).send('Reserva not found');
             }
+            
+            // Verificar que el usuario autenticado solo puede ver sus propias reservas
+            if (reserva.usuario_id !== req.user.id) {
+                return res.status(403).json({ 
+                    message: 'No tienes permiso para ver esta reserva' 
+                });
+            }
+            
             res.status(200).json(reserva);
         } catch (error) {
             console.error('Error fetching reserva:', error);
             res.status(500).send('Error fetching reserva from the database');
         }
     }
-
-    static async getReservasByEvento(req, res) {
-        const eventoId = req.params.eventoId;
-        try {
-            const reservas = await Reserva.getReservasByEvento(eventoId);
-            res.status(200).json(reservas);
-        } catch (error) {
-            console.error('Error fetching reservas:', error);
-            res.status(500).send('Error fetching reservas from the database');
-        }
-    }
-    
-    static async getReservasByUsuario(req, res) {
+      static async getReservasByUsuario(req, res) {
         const usuarioId = req.params.usuarioId;
+        
+        // Verificar que el usuario autenticado solo puede ver sus propias reservas
+        if (parseInt(usuarioId) !== req.user.id) {
+            return res.status(403).json({ 
+                message: 'No tienes permiso para ver las reservas de otro usuario' 
+            });
+        }
+        
         try {
             const reservas = await Reserva.getReservasByUsuario(usuarioId);
             res.status(200).json(reservas);
@@ -46,13 +39,20 @@ export class ReservaController {
             res.status(500).send('Error fetching reservas from the database');
         }
     }
-
+    
     static async deleteReserva(req, res) {
         const reservaId = req.params.id;
         try {
             const reserva = await Reserva.getReservaById(reservaId);
             if (!reserva) {
                 return res.status(404).send('Reserva no encontrada');
+            }
+
+            // Verificar que el usuario que hace la petición es el dueño de la reserva
+            if (reserva.usuario_id !== req.user.id) {
+                return res.status(403).json({ 
+                    message: 'No tienes permiso para eliminar esta reserva' 
+                });
             }
 
             const success = await Reserva.deleteReserva(reservaId);
@@ -65,20 +65,25 @@ export class ReservaController {
             console.error('Error deleting reserva:', error);
             res.status(500).send('Error al eliminar la reserva de la base de datos');
         }
-    }    
-    
-    static async createReserva(req, res) {
+    }
+      static async createReserva(req, res) {
         try {
             const { evento_id, user_id, cantidad } = req.body;
             
+            if (user_id !== req.user.id) {
+                return res.status(403).json({ 
+                    message: 'No tienes permiso para crear una reserva para otro usuario' 
+                });
+            }
+            
             // Validar datos de entrada
-            if (!evento_id || !user_id || !cantidad || cantidad <= 0) {
+            if (!evento_id || !cantidad || cantidad <= 0) {
                 return res.status(400).json({ 
                     mensaje: 'Datos incompletos o inválidos para la reserva' 
                 });
             }
 
-            // Verificar disponibilidad usando el método del modelo de Reserva
+            // Verificar disponibilidad
             const disponibilidad = await Reserva.verificarDisponibilidadReserva(evento_id, cantidad);
             
             if (!disponibilidad.disponible) {
@@ -87,7 +92,7 @@ export class ReservaController {
             
             // Crear la reserva
             const reservaData = {
-                usuario_id: user_id,
+                user_id,
                 evento_id,
                 cantidad
             };

@@ -1,19 +1,10 @@
 import { db } from '../../config/db.js';
 
 export class Reserva {
-   static async getAllReservas() {
-      const [rows] = await db.query('SELECT * FROM reservas');
-      return rows;
-   }
 
    static async getReservaById(id) {
       const [rows] = await db.query('SELECT * FROM reservas WHERE id = ?', [id]);
       return rows[0];
-   }
-
-   static async getReservasByEvento(eventoId) {   
-      const [rows] = await db.query('SELECT * FROM reservas WHERE evento_id = ?', [eventoId]);
-      return rows;
    }
 
    static async getReservasByUsuario(usuarioId) {   
@@ -25,19 +16,23 @@ export class Reserva {
          ORDER BY e.fecha_inicio DESC
       `, [usuarioId]);
       return rows;
-   }   static async deleteReserva(id) {
+   }   
+   
+   static async deleteReserva(id) {
       const [result] = await db.query('DELETE FROM reservas WHERE id = ?', [id]);
       return result.affectedRows > 0;
-   }   static async createReserva(reservaData) {
-      const { usuario_id, evento_id, cantidad } = reservaData;
+   }   
+   
+   static async createReserva(reservaData) {
+      const { user_id, evento_id, cantidad } = reservaData;
       const [result] = await db.query(
          'INSERT INTO reservas (usuario_id, evento_id, cantidad) VALUES (?, ?, ?)',
-         [usuario_id, evento_id, cantidad]
+         [user_id, evento_id, cantidad]
       );
       
       return {
          id: result.insertId,
-         usuario_id,
+         user_id,
          evento_id,
          cantidad,
          fecha_reserva: new Date()

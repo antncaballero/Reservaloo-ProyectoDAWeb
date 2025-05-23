@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { fetchWithAuth } from '../../api/api';
 import useUpdateEspacio from '../../hooks/useUpdateEspacio';
 
@@ -27,7 +27,7 @@ const ActualizarEspacio = () => {
                 const errorData = await response.json();
                 throw new Error(errorData.error || 'Error al actualizar el espacio');
             }
-            toast.success('Espacio actualizado correctamente', { autoClose: 2500 });
+            toast.success('Espacio actualizado correctamente', { autoClose: 2500});
             setTimeout(() => { navigate('/gestion/espacios') }, 2500);
         } catch (error) {
             toast.error(error.message);
@@ -37,12 +37,14 @@ const ActualizarEspacio = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <ToastContainer />
-            <div className="max-w-2xl mx-auto mt-22">
-                <h1 className="text-4xl font-bold text-white mb-8">Actualizar Espacio</h1>
-                
+            <header className='text-center mb-8 mt-24'>
+                <h1 className="text-3xl md:text-4xl font-bold md:mb-0 bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
+                Actualizar Espacio
+            </h1>
+            </header>
+            <div className="max-w-2xl mx-auto">      
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
+                    <section>
                         <label htmlFor="nombre" className="block text-sm font-medium text-white mb-1">
                             Nombre del espacio
                         </label>
@@ -55,9 +57,9 @@ const ActualizarEspacio = () => {
                             required
                             className="w-full px-4 py-2 border border-white rounded-md focus:border-secondary"
                         />
-                    </div>
+                    </section>
 
-                    <div>
+                    <section>
                         <label htmlFor="propietario" className="block text-sm font-medium text-white mb-1">
                             Propietario
                         </label>
@@ -70,9 +72,9 @@ const ActualizarEspacio = () => {
                             required
                             className="w-full px-4 py-2 border border-white rounded-md focus:border-secondary"
                         />
-                    </div>
+                    </section>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label htmlFor="capacidad" className="block text-sm font-medium text-white mb-1">
                                 Capacidad
@@ -105,9 +107,9 @@ const ActualizarEspacio = () => {
                                 <option className="text-primary font-medium" value="CERRADO">Cerrado</option>
                             </select>
                         </div>
-                    </div>
+                    </section>
 
-                    <div>
+                    <section>
                         <label htmlFor="direccion" className="block text-sm font-medium text-white mb-1">
                             Dirección
                         </label>
@@ -120,9 +122,9 @@ const ActualizarEspacio = () => {
                             required
                             className="w-full px-4 py-2 border border-white rounded-md focus:border-secondary"
                         />
-                    </div>
+                    </section>
 
-                    <div>
+                    <section>
                         <label htmlFor="descripcion" className="block text-sm font-medium text-white mb-1">
                             Descripción
                         </label>
@@ -135,9 +137,9 @@ const ActualizarEspacio = () => {
                             rows="4"
                             className="w-full px-4 py-2 border border-white rounded-md focus:border-secondary"
                         />
-                    </div>
+                    </section>
 
-                    <div>
+                    <section>
                         <label htmlFor="imagen" className="block text-sm font-medium text-white mb-1">
                             URL de la imagen
                         </label>
@@ -150,9 +152,9 @@ const ActualizarEspacio = () => {
                             required
                             className="w-full px-4 py-2 border border-white rounded-md focus:border-secondary"
                         />
-                    </div>
+                    </section>
 
-                    <div className="flex justify-end space-x-4">
+                    <section className="flex justify-end space-x-4">
                         <button
                             type="button"
                             onClick={() => navigate('/gestion/espacios')}
@@ -167,7 +169,7 @@ const ActualizarEspacio = () => {
                         >
                             {loading ? 'Actualizando...' : 'Actualizar Espacio'}
                         </button>
-                    </div>
+                    </section>
                 </form>
             </div>
         </div>

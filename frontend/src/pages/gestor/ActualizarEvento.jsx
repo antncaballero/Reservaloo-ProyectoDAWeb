@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import useUpdateEvent from "../../hooks/useUpdateEvent";
 
 const ActualizarEvento = () => {
@@ -38,9 +38,7 @@ const ActualizarEvento = () => {
     };
 
     return (
-        <>
-            <ToastContainer />
-            
+        <>            
             <header className="mt-24">
                 <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
                     Actualizar Evento

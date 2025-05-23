@@ -3,7 +3,6 @@ import { EventoController } from '../controllers/eventoController.js';
 import verificarTokenGestor from '../middlewares/verificarTokenGestor.js';
 var router = express.Router();
 
-/* GET eventos listing. */
 router.get('/', EventoController.getAllEventos); 
 router.get('/count', EventoController.countEventosFuturos);
 router.get('/filtrar', EventoController.filtrarEventos);

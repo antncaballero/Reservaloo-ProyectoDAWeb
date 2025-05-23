@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchWithAuth } from '../../api/api';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CrearEspacio = () => {
@@ -72,7 +72,6 @@ const CrearEspacio = () => {
 
     return (
         <>
-            <ToastContainer />
             <header className='mt-24'>
                 <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
                     Crear nuevo Espacio

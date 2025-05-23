@@ -9,6 +9,7 @@ import {
     ArchiveBoxIcon, 
     PresentationChartLineIcon, 
 } from '@heroicons/react/24/outline';
+import useStats from '../../hooks/useStats';
 
 export default function HomeUsuario() {
     const { user } = useContext(AuthContext);
@@ -17,6 +18,7 @@ export default function HomeUsuario() {
     const month = monthNames[currentDate.getMonth()];
     const day = currentDate.getDate();
     const year = currentDate.getFullYear();
+    const { numEspaciosActivos, numEventosFuturos } = useStats();
 
     return (
         <div className="container mx-auto px-4 py-8 mt-16">
@@ -31,10 +33,8 @@ export default function HomeUsuario() {
             </header>
             
             {/* Bento Grid Layout */}
-            <article className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                {/* Bloque principal - Bienvenida */}
-                <section className="md:col-span-2 bg-gradient-to-br from-[#3f51b5]/80 to-[#283593]/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
+            <article className="grid grid-cols-1 md:grid-cols-3 gap-6">                {/* Bloque principal - Bienvenida */}
+                <section className="md:col-span-2 bg-gradient-to-br from-blue-700/80 to-blue-900/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-2xl font-bold text-white">Tu Plataforma de Reservas</h2>
                         <SparklesIcon className="h-8 w-8 text-yellow-300" />
@@ -51,10 +51,8 @@ export default function HomeUsuario() {
                             <span>Mis Reservas</span>
                         </Link>
                     </div>
-                </section>
-
-                {/* Bloque espacios */}
-                <section className="bg-gradient-to-br from-[#ff7043]/90 to-[#ff5722]/80 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl flex flex-col justify-between">
+                </section>                {/* Bloque espacios */}
+                <section className="bg-gradient-to-br from-orange-500/90 to-orange-700/80 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl flex flex-col justify-between">
                     <div>                        
                         <div className="flex items-center justify-between mb-4">
                             <h2 className="text-xl font-bold text-white">Espacios</h2>
@@ -65,10 +63,8 @@ export default function HomeUsuario() {
                     <Link to="/espacios" className="mt-4 bg-white/20 py-2 px-4 rounded-lg text-center hover:bg-white/30 transition-colors">
                         Ver todos
                     </Link>
-                </section>
-
-                {/* Bloque de estadísticas */}
-                <section className="bg-gradient-to-br from-[#4caf50]/80 to-[#388e3c]/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
+                </section>                {/* Bloque de estadísticas */}
+                <section className="bg-gradient-to-br from-green-600/80 to-green-800/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-xl font-bold text-white">Estadísticas</h2>
                         <ChartBarIcon className="h-6 w-6 text-white" />
@@ -76,17 +72,15 @@ export default function HomeUsuario() {
                     <div className="space-y-3">
                         <div className="flex justify-between items-center">
                             <span className="text-gray-100">Eventos activos</span>
-                            <span className="bg-white/20 px-2 py-1 rounded-md text-white font-medium">30+</span>
+                            <span className="bg-white/20 px-2 py-1 rounded-md text-white font-medium">{numEventosFuturos}+</span>
                         </div>
                         <div className="flex justify-between items-center">
                             <span className="text-gray-100">Espacios disponibles</span>
-                            <span className="bg-white/20 px-2 py-1 rounded-md text-white font-medium">15+</span>
+                            <span className="bg-white/20 px-2 py-1 rounded-md text-white font-medium">{numEspaciosActivos}+</span>
                         </div>
                     </div>
-                </section>
-
-                {/* Bloque de eventos */}
-                <section className="md:col-span-2 bg-gradient-to-br from-[#7e57c2]/80 to-[#673ab7]/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
+                </section>                {/* Bloque de eventos */}
+                <section className="md:col-span-2 bg-gradient-to-br from-purple-600/80 to-purple-800/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-xl font-bold text-white">Explora todos nuestros Eventos</h2>
                         <ArchiveBoxIcon className="h-6 w-6" />

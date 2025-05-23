@@ -2,8 +2,6 @@
 
 ## 👥 Integrantes
 - Antonio Caballero Carbonell  
-- Juan Anca Alpiste
-
 
 ## 🛠️ Backend (Node.js + Express + MySQL)
 

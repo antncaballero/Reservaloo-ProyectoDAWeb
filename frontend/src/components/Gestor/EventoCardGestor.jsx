@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { fetchWithAuth } from "../../api/api";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const EventoCardGestor = ({ evento }) => {
   const [loading, setLoading] = useState(false);
@@ -48,7 +48,6 @@ const EventoCardGestor = ({ evento }) => {
 
   return (
     <>
-      <ToastContainer />
       <div className="bg-white rounded-lg shadow-lg overflow-hidden w-80 sm:w-90 h-110 flex flex-col transition-transform duration-300 hover:scale-105">
         <div className="h-40 w-full">
           <img

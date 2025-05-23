@@ -2,7 +2,6 @@ import ReservaCard from "../../components/Usuario/ReservaCard";
 import useReservas from "../../hooks/useReservas";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { ToastContainer } from "react-toastify";
 
 export default function Reservas() {
   const { user } = useContext(AuthContext);
@@ -29,7 +28,6 @@ export default function Reservas() {
       
       <div className="container mx-auto p-4">
         {/* Sección de filtro */}
-        <ToastContainer />
         <section className="mb-8 flex flex-col justify-between items-center gap-4">
           <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-4">
             <div className="flex gap-4 w-full md:w-auto justify-center">

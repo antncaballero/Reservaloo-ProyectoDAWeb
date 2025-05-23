@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { useState,  } from "react";
+import { toast } from "react-toastify";
 import useEspacio from "../../hooks/useEspacio";
  import { fetchWithAuth } from '../../api/api';
 
@@ -104,7 +104,6 @@ const CrearEvento = () => {
 
   return (
     <>
-      <ToastContainer />
       
       <header className="mt-24">
         <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
@@ -116,7 +115,8 @@ const CrearEvento = () => {
           </p>
         ) : (
           <p className="text-center mb-6">Cargando información del espacio...</p>
-        )}      </header>
+        )}      
+        </header>
 
       <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl mx-auto px-4 mb-8">
         {/* Nombre */}

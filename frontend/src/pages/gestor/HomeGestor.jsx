@@ -33,10 +33,8 @@ export default function HomeGestor() {
             </header>
             
             {/* Bento Grid */}
-            <article className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                {/* Bloque principal - Panel de Control */}
-                <section className="md:col-span-2 bg-gradient-to-br from-[#3f51b5]/80 to-[#283593]/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
+            <article className="grid grid-cols-1 md:grid-cols-3 gap-6">                {/* Bloque principal - Panel de Control */}
+                <section className="md:col-span-2 bg-gradient-to-br from-blue-700/80 to-blue-900/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-2xl font-bold text-white">Panel de Control de Gestor</h2>
                         <SparklesIcon className="h-8 w-8 text-yellow-300" />
@@ -54,10 +52,8 @@ export default function HomeGestor() {
                             <span>Gestionar Espacios</span>
                         </Link>
                     </div>
-                </section>
-
-                {/* Bloque Crear Espacio */}
-                <section className="bg-gradient-to-br from-[#ff7043]/90 to-[#ff5722]/80 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl flex flex-col justify-between">
+                </section>                {/* Bloque Crear Espacio */}
+                <section className="bg-gradient-to-br from-orange-500/90 to-orange-700/80 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl flex flex-col justify-between">
                     <div>                        
                         <div className="flex items-center justify-between mb-4">
                             <h2 className="text-xl font-bold text-white">Crear Espacio</h2>
@@ -68,10 +64,8 @@ export default function HomeGestor() {
                     <Link to="/espacios/crear" className="mt-4 bg-white/20 py-2 px-4 rounded-lg text-center hover:bg-white/30 transition-colors">
                         Crear nuevo
                     </Link>
-                </section>
-
-                {/* Bloque de estadísticas */}
-                <section className="bg-gradient-to-br from-[#4caf50]/80 to-[#388e3c]/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
+                </section>                {/* Bloque de estadísticas */}
+                <section className="bg-gradient-to-br from-green-600/80 to-green-800/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-xl font-bold text-white">Estadísticas</h2>
                         <ChartBarIcon className="h-6 w-6 text-white" />
@@ -86,10 +80,8 @@ export default function HomeGestor() {
                             <span className="bg-white/20 px-2 py-1 rounded-md text-white font-medium">{numEspaciosActivos}+ </span>
                         </div>
                     </div>
-                </section>
-
-                {/* Bloque crear evento */}
-                <section className="md:col-span-2 bg-gradient-to-br from-[#7e57c2]/80 to-[#673ab7]/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
+                </section>                {/* Bloque crear evento */}
+                <section className="md:col-span-2 bg-gradient-to-br from-purple-600/80 to-purple-800/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-xl font-bold text-white">Crear Evento</h2>
                         <RectangleGroupIcon className="h-6 w-6 text-yellow-300" />
