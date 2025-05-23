@@ -66,8 +66,8 @@ export class EspacioController {
                 error: 'Error al crear el espacio en la base de datos'
             });
         }
-    }
-
+    }    
+    
     static async actualizarEspacio(req, res) {
         try {
             const espacioId = req.params.id;
@@ -81,22 +81,29 @@ export class EspacioController {
                 });
             }
 
-            // Validación de capacidad si se proporciona
-            if (espacioData.capacidad !== undefined) {
-                if (isNaN(espacioData.capacidad) || espacioData.capacidad <= 0) {
-                    return res.status(400).json({
-                        error: 'La capacidad debe ser un número positivo'
-                    });
-                }
+            // Validación básica de campos requeridos para PUT
+            const camposRequeridos = ['nombre', 'propietario', 'capacidad', 'direccion', 'descripcion', 'estado', 'imagen'];
+            const camposFaltantes = camposRequeridos.filter(campo => !espacioData[campo]);
+            
+            if (camposFaltantes.length > 0) {
+                return res.status(400).json({
+                    error: 'Faltan campos requeridos',
+                    campos: camposFaltantes
+                });
             }
 
-            // Validación de estado si se proporciona
-            if (espacioData.estado !== undefined) {
-                if (!['ACTIVO', 'CERRADO'].includes(espacioData.estado)) {
-                    return res.status(400).json({
-                        error: 'El estado debe ser ACTIVO o CERRADO'
-                    });
-                }
+            // Validación de capacidad 
+            if (isNaN(espacioData.capacidad) || espacioData.capacidad <= 0) {
+                return res.status(400).json({
+                    error: 'La capacidad debe ser un número positivo'
+                });
+            }
+
+            // Validación de estado
+            if (!['ACTIVO', 'CERRADO'].includes(espacioData.estado)) {
+                return res.status(400).json({
+                    error: 'El estado debe ser ACTIVO o CERRADO'
+                });
             }
 
             try {
@@ -110,7 +117,7 @@ export class EspacioController {
 
                 res.status(200).json({
                     message: 'Espacio actualizado exitosamente',
-                    espacioActualizado: { ...espacio, ...espacioData }
+                    espacioActualizado: espacioData
                 });
             } catch (error) {
                 if (error.message === 'No se puede cerrar el espacio porque tiene eventos activos') {
@@ -122,8 +129,20 @@ export class EspacioController {
             }
         } catch (error) {
             console.error('Error actualizando espacio:', error);
-            res.status(500).json({
-                error: 'Error al actualizar el espacio'
+            res.status(500).json({ error: 'Error al actualizar el espacio'
+            });
+        }
+    }
+
+    static async countEspaciosActivos(req, res) {
+        try {
+            const count = await Espacio.countEspaciosActivos();
+            res.status(200).json({ count });
+        } catch (error) {
+            console.error('Error contando espacios activos:', error);
+            res.status(500).json({ 
+                error: 'Error al contar espacios activos',
+                message: error.message 
             });
         }
     }

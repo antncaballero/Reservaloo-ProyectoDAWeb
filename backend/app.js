@@ -4,7 +4,6 @@ import path from 'path';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import indexRouter from './src/routes/index.js';
 import usersRouter from './src/routes/users.js';
 import authRouter from './src/routes/auth.js';
 import espaciosRouter from './src/routes/espacios.js';
@@ -46,7 +45,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/auth', authRouter);
-app.use('/', verificarToken, indexRouter);
 app.use('/users', verificarToken, usersRouter);
 app.use('/espacios', verificarToken, espaciosRouter);
 app.use('/eventos', verificarToken, eventosRouter);

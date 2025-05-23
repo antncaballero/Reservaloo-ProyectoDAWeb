@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { fetchWithAuth } from '../api/api';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const useUpdateEspacio = () => {
-    const { id } = useParams();
+const useUpdateEspacio = (id) => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [formData, setFormData] = useState({
@@ -12,7 +11,7 @@ const useUpdateEspacio = () => {
         capacidad: '',
         direccion: '',
         descripcion: '',
-        estado: 'ACTIVO',
+        estado: '',
         imagen: ''
     });
 

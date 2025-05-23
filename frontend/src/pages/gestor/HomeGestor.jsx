@@ -9,6 +9,7 @@ import {
     PlusCircleIcon, 
     RectangleGroupIcon
 } from '@heroicons/react/24/outline';
+import useStats from '../../hooks/useStats';
 
 export default function HomeGestor() {
     const { user } = useContext(AuthContext);
@@ -17,6 +18,7 @@ export default function HomeGestor() {
     const month = monthNames[currentDate.getMonth()];
     const day = currentDate.getDate();
     const year = currentDate.getFullYear();
+    const { numEspaciosActivos, numEventosFuturos } = useStats();
 
     return (
         <div className="container mx-auto px-4 py-8 mt-16">
@@ -77,11 +79,11 @@ export default function HomeGestor() {
                     <div className="space-y-3">
                         <div className="flex justify-between items-center">
                             <span className="text-white">Eventos activos</span>
-                            <span className="bg-white/20 px-2 py-1 rounded-md text-white font-medium">30+</span>
+                            <span className="bg-white/20 px-2 py-1 rounded-md text-white font-medium">{numEventosFuturos}+ </span>
                         </div>
                         <div className="flex justify-between items-center">
                             <span className="text-white">Espacios disponibles</span>
-                            <span className="bg-white/20 px-2 py-1 rounded-md text-white font-medium">15+</span>
+                            <span className="bg-white/20 px-2 py-1 rounded-md text-white font-medium">{numEspaciosActivos}+ </span>
                         </div>
                     </div>
                 </section>

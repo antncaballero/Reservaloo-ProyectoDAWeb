@@ -172,7 +172,9 @@ const Eventos = ({
             <div className="cards-grid">
               {eventos.map((evento) => (
                 <div key={evento.id} className="card-wrapper">
-                  <CardComponent evento={evento} />
+                  <CardComponent 
+                    evento={evento}
+                  />
                 </div>
               ))}
             </div>

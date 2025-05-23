@@ -1,8 +1,6 @@
 import EventoCardGestor from "../../components/Gestor/EventoCardGestor";
-import useFilterEvents from "../../hooks/UseFilterEvents";
+import useFilterEvents from "../../hooks/useFilterEvents";
 import EventosConFiltros from "../../components/Eventos";
-
-const categorias = ["ACADEMICOS", "CULTURALES", "ENTRETENIMIENTO", "DEPORTES", "OTROS"];
 
 const EventosGestor = () => {
   const { eventos, loading, error, filtros, setFiltros, cargarEventos } = useFilterEvents();

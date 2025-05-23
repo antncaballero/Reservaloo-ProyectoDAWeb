@@ -18,77 +18,58 @@ import ActualizarEspacio from './pages/gestor/ActualizarEspacio';
 import Reservas from './pages/usuario/Reservas';
 import EventosGestor from './pages/gestor/EventosGestor';
 import CrearEvento from './pages/gestor/CrearEvento';
+import ActualizarEvento from './pages/gestor/ActualizarEvento';
 
 function App() {
+  // Definir rutas de usuario y gestor en arrays para mapearlas
+  const usuarioRoutes = [
+    { path: "/", element: <HomeUsuario /> },
+    { path: "/eventos", element: <EventosUsuario /> },
+    { path: "/eventos/:id", element: <Evento /> },
+    { path: "/espacios", element: <EspaciosUsuario /> },
+    { path: "/reservas", element: <Reservas /> },
+  ];
+
+  const gestorRoutes = [
+    { path: "/gestor", element: <HomeGestor /> },
+    { path: "/gestion/eventos", element: <EventosGestor /> },
+    { path: "/gestion/espacios", element: <GestionEspacios /> },
+    { path: "/espacios/crear", element: <CrearEspacio /> },
+    { path: "/espacios/actualizar/:id", element: <ActualizarEspacio /> },
+    { path: "/eventos/actualizar/:id", element: <ActualizarEvento /> },
+    { path: "/crear-evento/:idEspacio", element: <CrearEvento /> },
+  ];
+
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Routes>       
+        <Routes>
           {/* Rutas protegidas para usuarios normales */}
-          <Route path="/" element={
-            <RutaUsuario>
-              <HomeUsuario />
-            </RutaUsuario>
-          } />
-          <Route path="/eventos" element={
-            <RutaUsuario>
-              <EventosUsuario/>
-            </RutaUsuario>
-          } />
-          <Route path="/eventos/:id" element={
-            <RutaUsuario>
-              <Evento />
-            </RutaUsuario>
-          } />
-          <Route path="/espacios" element={
-            <RutaUsuario>
-              <EspaciosUsuario />
-            </RutaUsuario>
-          } />
-          <Route path="/reservas" element={
-            <RutaUsuario>
-              <Reservas />
-            </RutaUsuario>
-          } />
+          {usuarioRoutes.map(({ path, element }) => (
+            <Route
+              key={path}
+              path={path}
+              element={<RutaUsuario>{element}</RutaUsuario>}
+            />
+          ))}
           {/* Rutas protegidas solo para gestores */}
-          <Route path="/gestor" element={
-            <RutaGestor>
-              <HomeGestor />
-            </RutaGestor>
-          } />
-          <Route path="/gestion/eventos" element={
-            <RutaGestor>
-              <EventosGestor />
-            </RutaGestor>
-          } />
-          <Route path="/gestion/espacios" element={
-            <RutaGestor>
-              <GestionEspacios />
-            </RutaGestor>
-          } />
-          <Route path="/espacios/crear" element={
-            <RutaGestor>
-              <CrearEspacio />
-            </RutaGestor>
-          } />
-          <Route path="/espacios/actualizar/:id" element={
-            <RutaGestor>
-              <ActualizarEspacio />
-            </RutaGestor>
-          } />
-          <Route path="/eventos/crear" element={
-            <RutaGestor>
-              <CrearEvento />
-            </RutaGestor>
-          } />
-          {/* Rutas para layouts */}
+          {gestorRoutes.map(({ path, element }) => (
+            <Route
+              key={path}
+              path={path}
+              element={<RutaGestor>{element}</RutaGestor>}
+            />
+          ))}
           {/* Ruta por defecto */}
-          <Route path="*" element={
+          <Route
+            path="*"
+            element={
               <div className="flex flex-col h-screen justify-between">
                 <RutaDefault />
                 <Footer />
               </div>
-          } />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

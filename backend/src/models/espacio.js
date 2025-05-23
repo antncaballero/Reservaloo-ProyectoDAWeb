@@ -44,10 +44,16 @@ export class Espacio {
          direccion,
          descripcion,
          estado,
-         imagen
-      ]);
+         imagen      ]);
 
       return result.insertId;
+   }
+   
+   static async countEspaciosActivos() {
+      const [rows] = await db.query(
+         'SELECT COUNT(*) as count FROM espacios WHERE estado = "ACTIVO"'
+      );
+      return rows[0].count;
    }
 
    static async tieneEventosActivos(espacioId) {
@@ -61,13 +67,10 @@ export class Espacio {
       
       const [rows] = await db.query(query, [espacioId]);
       return rows[0].count > 0;
-   }
-
+   }   
+   
    static async actualizarEspacio(espacioId, espacioData) {
       // Si se intenta cambiar el estado a CERRADO, verificar eventos activos
-      
-      console.log('espacioData:', espacioData);
-      
       if (espacioData.estado === 'CERRADO') {
          const tieneEventos = await this.tieneEventosActivos(espacioId);
          if (tieneEventos) {
@@ -75,28 +78,28 @@ export class Espacio {
          }
       }
 
-      const camposPermitidos = ['nombre', 'propietario', 'capacidad', 'direccion', 'descripcion', 'estado', 'imagen'];
-      const camposActualizar = {};
-      
-      // Filtrar solo los campos permitidos que vienen en espacioData
-      for (const campo of camposPermitidos) {
-         if (espacioData[campo] !== undefined) {
-            camposActualizar[campo] = espacioData[campo];
-         }
-      }
-
-      if (Object.keys(camposActualizar).length === 0) {
-         return false;
-      }
-
-      const sets = Object.keys(camposActualizar).map(campo => `${campo} = ?`).join(', ');
-      const valores = [...Object.values(camposActualizar), espacioId];
-
       const query = `
          UPDATE espacios 
-         SET ${sets}
+         SET nombre = ?, 
+             propietario = ?, 
+             capacidad = ?, 
+             direccion = ?, 
+             descripcion = ?, 
+             estado = ?, 
+             imagen = ?
          WHERE id = ?
       `;
+      
+      const valores = [
+         espacioData.nombre,
+         espacioData.propietario,
+         espacioData.capacidad,
+         espacioData.direccion,
+         espacioData.descripcion,
+         espacioData.estado,
+         espacioData.imagen,
+         espacioId
+      ];
       
       const [result] = await db.query(query, valores);
       return result.affectedRows > 0;

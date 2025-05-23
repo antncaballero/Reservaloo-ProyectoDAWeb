@@ -72,7 +72,7 @@ const ReservaModal = ({ isOpen, onClose, evento }) => {
           <div className="flex items-center">
             <button 
               onClick={() => cantidadPlazas > 1 && setCantidadPlazas(cantidadPlazas - 1)}
-              className="bg-gray-700 text-white px-3 py-1 rounded-l-md hover:bg-gray-600 transition-colors"
+              className="cursor-pointer bg-gray-700 text-white px-3 py-1 rounded-l-md hover:bg-gray-600 transition-colors"
               disabled={cantidadPlazas <= 1}
             >
               -
@@ -90,7 +90,7 @@ const ReservaModal = ({ isOpen, onClose, evento }) => {
             
             <button 
               onClick={() => cantidadPlazas < evento.plazas_disponibles && setCantidadPlazas(cantidadPlazas + 1)}
-              className="bg-gray-700 text-white px-3 py-1 rounded-r-md hover:bg-gray-600 transition-colors"
+              className="cursor-pointer bg-gray-700 text-white px-3 py-1 rounded-r-md hover:bg-gray-600 transition-colors"
               disabled={cantidadPlazas >= evento.plazas_disponibles}
             >
               +
@@ -105,13 +105,13 @@ const ReservaModal = ({ isOpen, onClose, evento }) => {
         <div className="flex justify-end gap-3">
           <button
             onClick={handleClose}
-            className="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition-colors"
+            className="cursor-pointer bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition-colors"
           >
             Cancelar
           </button>
           <button
             onClick={confirmarReserva}
-            className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors flex items-center"
+            className="cursor-pointer bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors flex items-center"
             disabled={reservando}
           >
             {reservando ? (

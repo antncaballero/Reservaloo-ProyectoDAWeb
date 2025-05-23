@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { fetchWithAuth } from '../../api/api';
 import useUpdateEspacio from '../../hooks/useUpdateEspacio';
 
 const ActualizarEspacio = () => {
+    const { id } = useParams();
     const navigate = useNavigate();
-    const { id, formData, loading, setFormData, setLoading } = useUpdateEspacio();
+    const { formData, loading, setFormData, setLoading } = useUpdateEspacio(id);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -14,15 +14,13 @@ const ActualizarEspacio = () => {
             ...prev,
             [name]: value
         }));
-    };
-
-    const handleSubmit = async (e) => {
+    };    const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
         try {
             const response = await fetchWithAuth(`/espacios/${id}`, {
-                method: 'PATCH',
+                method: 'PUT',
                 body: JSON.stringify(formData)
             });
             if (!response.ok) {

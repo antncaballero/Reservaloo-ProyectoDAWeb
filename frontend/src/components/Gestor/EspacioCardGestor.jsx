@@ -33,8 +33,10 @@ const EspacioCardGestor = ({ espacio }) => {
                 </div>
                 <div className="mt-4 flex justify-between items-center gap-2">
                     <Link 
-                        to={`/espacios/${espacio.id}`}
-                        className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors flex-1 text-center"
+                        to={`/crear-evento/${espacio.id}`}
+                        className={`px-4 py-2 rounded-md transition-colors flex-1 text-center 
+                            ${ espacio.estado !== 'ACTIVO' ? 'bg-gray-300 text-red-500 cursor-not-allowed pointer-events-none' : ' bg-primary hover:bg-primary/90'}`}
+                        aria-disabled={espacio.estado !== 'ACTIVO'}
                     >
                         Crear evento
                     </Link>

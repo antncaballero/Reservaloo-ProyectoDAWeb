@@ -34,7 +34,9 @@ export default function useFilterEvents() {
         } finally {
             setLoading(false);
         }
-    };    useEffect(() => {
+    };    
+    
+    useEffect(() => {
         // Al cargar por primera vez, aplicamos el filtro por fecha actual
         cargarEventos(filtros);
     }, []);
