@@ -1,16 +1,10 @@
 import '../assets/css/EspaciosEventos.css';
 import Header from './Header';
+import useFilterEspacios from '../hooks/useFilterEspacios';
 
-const Espacios = ({
-    espacios,
-    loading,
-    error,
-    filtros,
-    setFiltros,
-    cargarEspacios,
-    CardEspacio
-}) => {
+const Espacios = ({ CardEspacio }) => {
   const estados = ["ACTIVO", "CERRADO"];
+  const { espacios, loading, error, filtros, setFiltros, cargarEspacios } = useFilterEspacios();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

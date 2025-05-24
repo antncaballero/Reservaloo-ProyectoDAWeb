@@ -1,14 +1,7 @@
 import "../assets/css/EspaciosEventos.css";
+import useFilterEvents from "../hooks/useFilterEvents";
 import Header from "./Header";
-const Eventos = ({
-  filtros,
-  setFiltros,
-  cargarEventos,
-  eventos,
-  loading,
-  error,
-  CardComponent,
-}) => {
+const Eventos = ({CardComponent}) => {
   const categorias = [
     "ACADEMICOS",
     "CULTURALES",
@@ -16,6 +9,8 @@ const Eventos = ({
     "DEPORTES",
     "OTROS",
   ];
+
+  const { eventos, loading, error, filtros, setFiltros, cargarEventos } = useFilterEvents();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

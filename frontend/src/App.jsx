@@ -5,7 +5,6 @@ import { RutaUsuario } from './components/Usuario/RutaUsuario';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 // Páginas
 import HomeUsuario from './pages/usuario/HomeUsuario';
 import HomeGestor from './pages/gestor/HomeGestor';

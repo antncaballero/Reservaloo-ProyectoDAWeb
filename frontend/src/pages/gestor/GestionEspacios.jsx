@@ -1,19 +1,9 @@
 import EspacioCardGestor from "../../components/Gestor/EspacioCardGestor";
-import useFilterEspacios from "../../hooks/useFilterEspacios";
 import Espacios from "../../components/Espacios";
 
 const GestionEspacios = () => {
-
-  const { espacios, loading, error, filtros, setFiltros, cargarEspacios } = useFilterEspacios();
-
   return (
     <Espacios
-      espacios={espacios}
-      loading={loading}
-      error={error}
-      filtros={filtros}
-      setFiltros={setFiltros}
-      cargarEspacios={cargarEspacios}
       CardEspacio={EspacioCardGestor}
     />
   );  
