@@ -10,30 +10,20 @@ import {
     RectangleGroupIcon
 } from '@heroicons/react/24/outline';
 import useStats from '../../hooks/useStats';
+import HeaderHome from '../../components/HeaderHome';
 
 export default function HomeGestor() {
     const { user } = useContext(AuthContext);
-    const currentDate = new Date();
-    const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    const month = monthNames[currentDate.getMonth()];
-    const day = currentDate.getDate();
-    const year = currentDate.getFullYear();
     const { numEspaciosActivos, numEventosFuturos } = useStats();
 
     return (
         <div className="container mx-auto px-4 py-8 mt-16">
             {/* Header con saludo y fecha */}
-            <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-                <h1 className="text-3xl md:text-4xl font-bold mb-3 md:mb-0 bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
-                    ¡Hola, {user?.nombre}!
-                </h1>
-                <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg">
-                    <p className="text-white font-medium">{day} de {month}, {year}</p>
-                </div>
-            </header>
-            
+            <HeaderHome user={user} />
+               
             {/* Bento Grid */}
-            <article className="grid grid-cols-1 md:grid-cols-3 gap-6">                {/* Bloque principal - Panel de Control */}
+            <article className="grid grid-cols-1 md:grid-cols-3 gap-6">                
+                {/* Bloque principal - Panel de Control */}
                 <section className="md:col-span-2 bg-gradient-to-br from-blue-700/80 to-blue-900/90 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.01] hover:shadow-xl">                    
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-2xl font-bold text-white">Panel de Control de Gestor</h2>

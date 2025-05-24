@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-import UserLayout from './layouts/UserLayout';
+import { AuthContext } from '../../context/AuthContext';
+import UserLayout from '../layouts/UserLayout';
 
 export function RutaUsuario({ children }) {
     const { user, loading } = useContext(AuthContext);

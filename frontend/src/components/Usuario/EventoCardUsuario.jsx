@@ -9,15 +9,15 @@ const EventoCardUsuario = ({ evento }) => {
     };
 
     return (
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden w-80 sm:w-90 h-110 flex flex-col transition-transform duration-300 hover:scale-105">
-        <div className="h-40 w-full">
+      <article className="bg-white rounded-lg shadow-lg overflow-hidden w-80 sm:w-90 h-110 flex flex-col transition-transform duration-300 hover:scale-105">
+        <section className="h-40 w-full">
           <img
             src={evento.imagen}
             alt={evento.nombre}
             className="h-40 w-full object-cover"
           />
-        </div>
-        <div className="p-4 flex-1 flex flex-col">
+        </section>
+        <section className="p-4 flex-1 flex flex-col">
           <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-1">
             {evento.nombre}
           </h3>
@@ -52,8 +52,8 @@ const EventoCardUsuario = ({ evento }) => {
           >
             {evento.cancelado ? "Evento cancelado" : "Ir al evento"}
           </button>
-        </div>
-      </div>
+        </section>
+      </article>
     );
 };
 

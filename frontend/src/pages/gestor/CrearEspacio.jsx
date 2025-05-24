@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchWithAuth } from '../../api/api';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Header from '../../components/Header';
 
 const CrearEspacio = () => {
     const navigate = useNavigate();
@@ -72,16 +72,11 @@ const CrearEspacio = () => {
 
     return (
         <>
-            <header className='mt-24'>
-                <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
-                    Crear nuevo Espacio
-                </h1>
-            </header>
-
-            <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl mx-auto px-4">
+            <Header title="Crear Espacio" />
+            <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl mx-auto px-4 text-xs sm:text-sm font-medium">
                 {/* Nombre */}
-                <div className="flex flex-col">
-                    <label className="text-sm font-medium mb-1" htmlFor="nombre">
+                <section className="flex flex-col">
+                    <label className="mb-1" htmlFor="nombre">
                         Nombre del espacio *
                     </label>
                     <input
@@ -93,11 +88,11 @@ const CrearEspacio = () => {
                         required
                         className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
                     />
-                </div>
+                </section>
 
                 {/* Propietario */}
-                <div className="flex flex-col">
-                    <label className="text-sm font-medium mb-1" htmlFor="propietario">
+                <section className="flex flex-col">
+                    <label className="mb-1" htmlFor="propietario">
                         Propietario *
                     </label>
                     <input
@@ -109,13 +104,13 @@ const CrearEspacio = () => {
                         required
                         className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
                     />
-                </div>
+                </section>
 
                 {/* Capacidad y Estado en la misma línea */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <section className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {/* Capacidad */}
                     <div className="flex flex-col">
-                        <label className="text-sm font-medium mb-1" htmlFor="capacidad">
+                        <label className="mb-1" htmlFor="capacidad">
                             Capacidad (personas) *
                         </label>
                         <input
@@ -132,7 +127,7 @@ const CrearEspacio = () => {
 
                     {/* Estado */}
                     <div className="flex flex-col">
-                        <label className="text-sm font-medium mb-1" htmlFor="estado">
+                        <label className="mb-1" htmlFor="estado">
                             Estado *
                         </label>
                         <select
@@ -147,11 +142,11 @@ const CrearEspacio = () => {
                             <option value="CERRADO" className='text-primary'>Cerrado</option>
                         </select>
                     </div>
-                </div>
+                </section>
 
                 {/* Dirección */}
-                <div className="flex flex-col">
-                    <label className="text-sm font-medium mb-1" htmlFor="direccion">
+                <section className="flex flex-col">
+                    <label className="mb-1" htmlFor="direccion">
                         Dirección *
                     </label>
                     <input
@@ -163,11 +158,11 @@ const CrearEspacio = () => {
                         required
                         className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
                     />
-                </div>
+                </section>
 
                 {/* Descripción */}
-                <div className="flex flex-col">
-                    <label className="text-sm font-medium mb-1" htmlFor="descripcion">
+                <section className="flex flex-col">
+                    <label className="mb-1" htmlFor="descripcion">
                         Descripción *
                     </label>
                     <textarea
@@ -179,11 +174,11 @@ const CrearEspacio = () => {
                         rows="4"
                         className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
                     />
-                </div>
+                </section>
 
                 {/* URL de la imagen */}
-                <div className="flex flex-col">
-                    <label className="text-sm font-medium mb-1" htmlFor="imagen">
+                <section className="flex flex-col">
+                    <label className="mb-1" htmlFor="imagen">
                         URL de la imagen *
                     </label>
                     <input
@@ -195,15 +190,15 @@ const CrearEspacio = () => {
                         required
                         className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
                     />
-                </div>
+                </section>
 
                 {error && (
-                    <div className="text-red-600 text-sm">
+                    <section className="text-red-600 text-sm">
                         {error}
-                    </div>
+                    </section>
                 )}
 
-                <div className="flex gap-4">
+                <section className="flex gap-4">
                     <button
                         type="submit"
                         disabled={loading}
@@ -218,7 +213,7 @@ const CrearEspacio = () => {
                     >
                         Cancelar
                     </button>
-                </div>
+                </section>
             </form>
         </>
     );

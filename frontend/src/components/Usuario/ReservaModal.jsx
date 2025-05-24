@@ -72,10 +72,10 @@ const ReservaModal = ({ isOpen, onClose, evento }) => {
       overlayClassName="fixed inset-0 bg-black/60"
       contentLabel="Seleccionar Plazas"
     >
-      <div className="bg-neutral-900 border border-neutral-700 rounded-lg p-8 max-w-sm sm:max-w-md w-full mx-auto">
+      <article className="bg-neutral-900 border border-neutral-700 rounded-lg p-8 max-w-sm sm:max-w-md w-full mx-auto">
         <h2 className="text-xl font-bold text-white mb-4">Reservar plazas para {evento.nombre}</h2>
         
-        <div className="my-6">
+        <section className="my-6">
           <label htmlFor="cantidadPlazas" className="block text-sm font-medium text-gray-300 mb-2">
             Número de plazas a reservar (máximo {evento.plazas_disponibles})
           </label>
@@ -107,13 +107,13 @@ const ReservaModal = ({ isOpen, onClose, evento }) => {
               +
             </button>
           </div>
-        </div>
+        </section>
 
-        <div className="text-sm text-gray-400 mb-6">
+        <section className="text-sm text-gray-400 mb-6">
           Estás reservando {cantidadPlazas} plaza{cantidadPlazas > 1 ? 's' : ''} para el evento.
-        </div>
+        </section>
         
-        <div className="flex justify-end gap-3">
+        <section className="flex justify-end gap-3">
           <button
             onClick={handleClose}
             className="cursor-pointer bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition-colors"
@@ -134,8 +134,8 @@ const ReservaModal = ({ isOpen, onClose, evento }) => {
               'Confirmar reserva'
             )}
           </button>
-        </div>
-      </div>
+        </section>
+      </article>
     </Modal>
   );
 };

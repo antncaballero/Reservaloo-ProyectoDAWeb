@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import { RutaGestor } from './components/RutaGestor';
-import { RutaUsuario } from './components/RutaUsuario';
+import { RutaGestor } from './components/Gestor/RutaGestor';
+import { RutaUsuario } from './components/Usuario/RutaUsuario';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

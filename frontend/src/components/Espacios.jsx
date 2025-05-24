@@ -1,4 +1,5 @@
 import '../assets/css/EspaciosEventos.css';
+import Header from './Header';
 
 const Espacios = ({
     espacios,
@@ -24,19 +25,15 @@ const Espacios = ({
     cargarEspacios(filtros);
   };
   return (
-    <div className="ev-container">      
-      <header className="ev-header">
-        <h1 className="title">
-          Espacios
-        </h1>
-      </header>
-      
-      {/* Sección de filtros */}
-      <section className="filtros-section">
+    <>
+    <Header title="Espacios de Reservaloo" />
+    <div className="ev-container">            
+      {/* filtros */}
+      <article className="filtros-section">
         <form onSubmit={handleSubmit} className="filtros-form">
           
           {/* Nombre */}
-          <div className="form-group">
+          <section className="form-group">
             <label className="form-label" htmlFor="nombre">Nombre</label>
             <input 
               type="text" 
@@ -46,10 +43,10 @@ const Espacios = ({
               onChange={handleInputChange}
               className="form-input"
             />
-          </div>
+          </section>
 
           {/* Capacidad mínima */}
-          <div className="form-group">
+          <section className="form-group">
             <label className="form-label" htmlFor="capacidad_minima">
               Capacidad mínima
             </label>
@@ -62,10 +59,10 @@ const Espacios = ({
               min="0"
               className="form-input"
             />
-          </div>
+          </section>
 
           {/* Estado */}
-          <div className="form-group">
+          <section className="form-group">
             <label className="form-label" htmlFor="estado">Estado</label>
             <select 
               id="estado" 
@@ -81,21 +78,21 @@ const Espacios = ({
                 </option>
               ))}
             </select>
-          </div>
+          </section>
 
           {/* Botón de filtro */}
-          <div className="buttons-container">
+          <section className="buttons-container">
             <button 
               type="submit" 
               className="btn btn-primary"
             >
               Filtrar espacios
             </button>
-          </div>
+          </section>
         </form>
-      </section>
+      </article>
 
-      <section>
+      <article>
         {loading ? (
           <div className="loading">
             <p className="loading-text">Cargando espacios...</p>
@@ -114,8 +111,9 @@ const Espacios = ({
             </div>
           </>
         )}
-      </section>
+      </article>
     </div>
+    </>
   );
 };
 

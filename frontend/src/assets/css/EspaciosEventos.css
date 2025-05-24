@@ -1,22 +1,7 @@
 /* Estilos para la página de eventos */
 
 .ev-container { 
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.ev-header {
-  margin-top: 6rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: linear-gradient(to right, white, #ffd700);
-  background-clip: text;
-  color: transparent;
+  padding: 0 1rem;
 }
 
 .filtros-section {

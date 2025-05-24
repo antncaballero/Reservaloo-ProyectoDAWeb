@@ -40,7 +40,7 @@ const ActualizarEvento = () => {
     return (
         <>            
             <header className="mt-24">
-                <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
+                <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
                     Actualizar Evento
                 </h1>
                 {espacio ? (
@@ -57,10 +57,10 @@ const ActualizarEvento = () => {
                     <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
                 </div>
             ) : (
-                <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl mx-auto px-4 mb-8">
+                <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl mx-auto px-4 mb-8 text-sm font-medium">
                     {/* Nombre */}
-                    <div className="flex flex-col">
-                        <label className="text-sm font-medium mb-1" htmlFor="nombre">
+                    <section className="flex flex-col">
+                        <label className="mb-1" htmlFor="nombre">
                             Nombre del evento *
                         </label>
                         <input
@@ -72,11 +72,11 @@ const ActualizarEvento = () => {
                             required
                             className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
                         />
-                    </div>
+                    </section>
 
                     {/* Organizador */}
-                    <div className="flex flex-col">
-                        <label className="text-sm font-medium mb-1" htmlFor="organizador">
+                    <section className="flex flex-col">
+                        <label className="mb-1" htmlFor="organizador">
                             Organizador *
                         </label>
                         <input
@@ -88,13 +88,13 @@ const ActualizarEvento = () => {
                             required
                             className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
                         />
-                    </div>
+                    </section>
 
                     {/* Plazas y Categoría en la misma línea */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <section className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {/* Plazas */}
                         <div className="flex flex-col">
-                            <label className="text-sm font-medium mb-1" htmlFor="plazas">
+                            <label className="mb-1" htmlFor="plazas">
                                 Número de plazas *
                             </label>
                             <input
@@ -117,7 +117,7 @@ const ActualizarEvento = () => {
 
                         {/* Categoría */}
                         <div className="flex flex-col">
-                            <label className="text-sm font-medium mb-1" htmlFor="categoria">
+                            <label className=" mb-1" htmlFor="categoria">
                                 Categoría *
                             </label>
                             <select
@@ -135,13 +135,13 @@ const ActualizarEvento = () => {
                                 <option value="OTROS" className="text-primary">Otros</option>
                             </select>
                         </div>
-                    </div>
+                    </section>
 
                     {/* Fechas en la misma línea */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <section className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {/* Fecha Inicio */}
                         <div className="flex flex-col">
-                            <label className="text-sm font-medium mb-1" htmlFor="fecha_inicio">
+                            <label className=" mb-1" htmlFor="fecha_inicio">
                                 Fecha de inicio *
                             </label>
                             <input
@@ -158,7 +158,7 @@ const ActualizarEvento = () => {
 
                         {/* Fecha Fin */}
                         <div className="flex flex-col">
-                            <label className="text-sm font-medium mb-1" htmlFor="fecha_fin">
+                            <label className=" mb-1" htmlFor="fecha_fin">
                                 Fecha de fin *
                             </label>
                             <input
@@ -171,11 +171,12 @@ const ActualizarEvento = () => {
                                 min={formData.fecha_inicio || new Date().toISOString().split('T')[0]}
                                 className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
                             />
-                        </div>                    </div>
+                        </div>                    
+                    </section>
 
                     {/* Descripción */}
-                    <div className="flex flex-col">
-                        <label className="text-sm font-medium mb-1" htmlFor="descripcion">
+                    <section className="flex flex-col">
+                        <label className=" mb-1" htmlFor="descripcion">
                             Descripción *
                         </label>
                         <textarea
@@ -187,11 +188,11 @@ const ActualizarEvento = () => {
                             rows="4"
                             className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
                         />
-                    </div>
+                    </section>
 
                     {/* URL de la imagen */}
-                    <div className="flex flex-col">
-                        <label className="text-sm font-medium mb-1" htmlFor="imagen">
+                    <section className="flex flex-col">
+                        <label className=" mb-1" htmlFor="imagen">
                             URL de la imagen *
                         </label>
                         <input
@@ -203,10 +204,10 @@ const ActualizarEvento = () => {
                             required
                             className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
                         />
-                    </div>
+                    </section>
 
                     {/* Cancelado */}
-                    <div className="flex items-center space-x-2">
+                    <section className="flex items-center space-x-2">
                         <input
                             type="checkbox"
                             id="cancelado"
@@ -220,16 +221,16 @@ const ActualizarEvento = () => {
                             }}
                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                         />
-                        <label htmlFor="cancelado" className="text-sm font-medium">
+                        <label htmlFor="cancelado" className="">
                             Evento cancelado
                         </label>
-                    </div>
+                    </section>
 
                     {error && (
-                        <div className="text-red-600 text-sm">{error}</div>
+                        <section className="text-red-600 text-sm">{error}</section>
                     )}
 
-                    <div className="flex gap-4">
+                    <section className="flex gap-4">
                         <button
                             type="submit"
                             disabled={loading || !espacio}
@@ -244,7 +245,7 @@ const ActualizarEvento = () => {
                         >
                             Cancelar
                         </button>
-                    </div>
+                    </section>
                 </form>
             )}
         </>

@@ -18,7 +18,7 @@ export default function Navbar() {
                     </Link>
 
                     {/* Enlaces de navegación en desktop */}
-                    <div className="hidden md:flex space-x-8">
+                    <section className="hidden md:flex space-x-8">
                         <Link to="/eventos" className="hover:text-secondary transition-colors">
                             Eventos
                         </Link>
@@ -28,18 +28,18 @@ export default function Navbar() {
                         <Link to="/reservas" className="hover:text-secondary transition-colors">
                             Mis reservas
                         </Link>
-                    </div>
+                    </section>
 
                     {/* Perfil y logout en desktop */}
-                    <div className="hidden md:flex items-center space-x-4">
+                    <section className="hidden md:flex items-center space-x-4">
                         <span>{user?.nombre}</span>
                         <button onClick={logout}className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition-colors cursor-pointer">
                             Cerrar sesión
                         </button>
-                    </div>
+                    </section>
 
                     {/* Botón hamburguesa en móvil */}
-                    <div className="md:hidden">
+                    <section className="md:hidden flex items-center">
                         <button onClick={() => setOpen(!open)} className="focus:outline-none">
                             {open ? (
                                 <XMarkIcon className="h-8 w-8" />
@@ -47,10 +47,10 @@ export default function Navbar() {
                                 <Bars3Icon className="h-8 w-8" />
                             )}
                         </button>
-                    </div>
+                    </section>
                 </div>
                 {/* Dropdown en móvil */}
-                <div
+                <section
                     className={`md:hidden mt-2 space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${open ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
                 >
                     <Link to="/eventos" className="block hover:text-secondary" onClick={() => setOpen(false)}>
@@ -65,7 +65,7 @@ export default function Navbar() {
                     <button onClick={logout} className="bg-red-600 hover:bg-red-700 px-4 py-2 mt-2 mb-4 rounded transition-colors cursor-pointer" >
                         Cerrar sesión
                     </button>
-                </div>
+                </section>
             </div>
         </nav>
     );

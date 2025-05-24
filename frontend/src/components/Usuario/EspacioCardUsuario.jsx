@@ -2,15 +2,15 @@ import { Link } from 'react-router-dom';
 
 const EspacioCardUsuario = ({ espacio }) => {
     return (
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden sm:w-90 w-80 h-110 flex flex-col transition-transform duration-300 hover:scale-105">
-        <div className="h-48 w-full">
+      <article className="bg-white rounded-lg shadow-lg overflow-hidden sm:w-90 w-80 h-110 flex flex-col transition-transform duration-300 hover:scale-105">
+        <section className="h-48 w-full">
           <img
             src={espacio.imagen}
             alt={espacio.nombre}
             className="w-full h-full object-cover"
           />
-        </div>
-        <div className="p-4 flex-1 flex flex-col">
+        </section>
+        <section className="p-4 flex-1 flex flex-col">
           <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-1">
             {espacio.nombre}
           </h3>
@@ -46,8 +46,8 @@ const EspacioCardUsuario = ({ espacio }) => {
           >
             Ver eventos asociados
           </Link>
-        </div>
-      </div>
+        </section>
+      </article>
     );
 };
 

@@ -2,6 +2,7 @@ import ReservaCard from "../../components/Usuario/ReservaCard";
 import useReservas from "../../hooks/useReservas";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import Header from "../../components/Header";
 
 export default function Reservas() {
   const { user } = useContext(AuthContext);
@@ -20,13 +21,9 @@ export default function Reservas() {
 
   return (
     <>
-      <header className="mb-4 mt-24">
-        <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
-          Mis reservas
-        </h1>
-      </header>
+      <Header title="Mis reservas"/>
       
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-x">
         {/* Sección de filtro */}
         <section className="mb-8 flex flex-col justify-between items-center gap-4">
           <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-4">

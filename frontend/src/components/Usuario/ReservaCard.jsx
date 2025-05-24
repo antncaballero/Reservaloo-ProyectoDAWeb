@@ -50,18 +50,18 @@ const ReservaCard = ({ reserva, onCancelar }) => {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6 mx-auto
+        <article className="bg-white rounded-lg shadow-md overflow-hidden mb-6 mx-auto
                       flex flex-col md:flex-row h-auto w-80 md:h-48 md:w-160 transition-transform duration-300 hover:scale-102">
             {/* Imagen con tamaño fijo */}
-            <div className="w-full md:w-1/3 h-48 flex-shrink-0">
+            <section className="w-full md:w-1/3 h-48 flex-shrink-0">
                 <img 
                     src={reserva.evento_imagen} 
                     alt={reserva.evento_nombre}
                     className="w-full h-full object-cover"
                 />
-            </div>
+            </section>
             {/* Contenido */}
-            <div className="w-full md:w-2/3 p-4 flex flex-col justify-between">
+            <section className="w-full md:w-2/3 p-4 flex flex-col justify-between">
                 <div>
                     <h3 className="text-primary text-xl font-semibold mb-2 line-clamp-1">
                         {reserva.evento_nombre}
@@ -93,8 +93,8 @@ const ReservaCard = ({ reserva, onCancelar }) => {
                         </span>
                     )}
                 </div>
-            </div>
-        </div>
+            </section>
+        </article>
     );
 };
 

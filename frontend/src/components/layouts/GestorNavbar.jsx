@@ -18,20 +18,20 @@ export default function GestorNavbar() {
                     </Link>
 
                     {/* Enlaces de navegación en desktop */}
-                    <div className="hidden md:flex space-x-8">
+                    <section className="hidden md:flex space-x-8">
                         <Link to="/gestion/eventos" className="hover:text-secondary transition-colors">
-                            Gestionar Eventos
+                            Eventos
                         </Link>
                         <Link to="/gestion/espacios" className="hover:text-secondary transition-colors">
-                            Gestionar Espacios
+                            Espacios
                         </Link>
                         <Link to="/espacios/crear" className="hover:text-secondary transition-colors">
                             Crear Espacio
                         </Link>
-                    </div>
+                    </section>
 
                     {/* Perfil y logout en desktop */}
-                    <div className="hidden md:flex items-center space-x-4">
+                    <section className="hidden md:flex items-center space-x-4">
                         <span>{user?.nombre}</span>
                         <button 
                             onClick={logout}
@@ -39,10 +39,10 @@ export default function GestorNavbar() {
                         >
                             Cerrar sesión
                         </button>
-                    </div>
+                    </section>
 
                     {/* Botón hamburguesa en móvil */}
-                    <div className="md:hidden">
+                    <section className="md:hidden flex items-center">
                         <button onClick={() => setOpen(!open)} className="focus:outline-none">
                             {open ? (
                                 <XMarkIcon className="h-8 w-8" />
@@ -50,17 +50,17 @@ export default function GestorNavbar() {
                                 <Bars3Icon className="h-8 w-8" />
                             )}
                         </button>
-                    </div>
+                    </section>
                 </div>
                 {/* Dropdown en móvil */}
-                <div
+                <section
                     className={`md:hidden mt-2 space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${open ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
                 >
                     <Link to="/gestion/eventos" className="block hover:text-secondary" onClick={() => setOpen(false)}>
-                        Gestionar Eventos
+                        Eventos
                     </Link>
                     <Link to="/gestion/espacios" className="block hover:text-secondary" onClick={() => setOpen(false)}>
-                        Gestionar Espacios
+                        Espacios
                     </Link>
                     <Link to="/espacios/crear" className="block hover:text-secondary" onClick={() => setOpen(false)}>
                         Crear Espacio
@@ -68,7 +68,7 @@ export default function GestorNavbar() {
                     <button onClick={logout} className="bg-red-600 hover:bg-red-700 px-4 py-2 mt-2 mb-4 rounded transition-colors cursor-pointer" >
                         Cerrar sesión
                     </button>
-                </div>
+                </section>
             </div>
         </nav>
     );

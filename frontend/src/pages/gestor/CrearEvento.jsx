@@ -1,16 +1,16 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState,  } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import useEspacio from "../../hooks/useEspacio";
- import { fetchWithAuth } from '../../api/api';
+import { fetchWithAuth } from "../../api/api";
 
 const CrearEvento = () => {
   const { idEspacio } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  
-  const {espacio} = useEspacio(idEspacio);
+
+  const { espacio } = useEspacio(idEspacio);
 
   const [formData, setFormData] = useState({
     nombre: "",
@@ -22,17 +22,16 @@ const CrearEvento = () => {
     fecha_fin: "",
     espacio_id: idEspacio,
     imagen: "",
-    cancelado: false
+    cancelado: false,
   });
 
   // Cargar datos del espacio
 
-
   const handleInputChange = (e) => {
     const { name, value, type } = e.target;
-    const newValue = type === "number" ? 
-      (value === "" ? "" : parseInt(value)) : value;
-    
+    const newValue =
+      type === "number" ? (value === "" ? "" : parseInt(value)) : value;
+
     setFormData((prev) => ({
       ...prev,
       [name]: newValue,
@@ -47,7 +46,7 @@ const CrearEvento = () => {
     // Validar que las fechas sean válidas
     const fechaInicio = new Date(formData.fecha_inicio);
     const fechaFin = new Date(formData.fecha_fin);
-    
+
     if (fechaFin < fechaInicio) {
       setError("La fecha de fin no puede ser anterior a la fecha de inicio");
       setLoading(false);
@@ -57,9 +56,13 @@ const CrearEvento = () => {
 
     // Validar que las plazas no excedan la capacidad del espacio
     if (espacio && formData.plazas > espacio.capacidad) {
-      setError(`El número de plazas no puede superar la capacidad del espacio (${espacio.capacidad})`);
+      setError(
+        `El número de plazas no puede superar la capacidad del espacio (${espacio.capacidad})`
+      );
       setLoading(false);
-      toast.error(`El número de plazas no puede superar la capacidad del espacio (${espacio.capacidad})`);
+      toast.error(
+        `El número de plazas no puede superar la capacidad del espacio (${espacio.capacidad})`
+      );
       return;
     }
 
@@ -87,15 +90,22 @@ const CrearEvento = () => {
         navigate(`/gestion/eventos`);
       }, 2000);
     } catch (error) {
-      setError(error.message || "Error al crear el evento. Por favor, inténtalo de nuevo.");
-      toast.error(error.message || "Error al crear el evento. Por favor, inténtalo de nuevo.", {
-        position: "top-right",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      setError(
+        error.message ||
+          "Error al crear el evento. Por favor, inténtalo de nuevo."
+      );
+      toast.error(
+        error.message ||
+          "Error al crear el evento. Por favor, inténtalo de nuevo.",
+        {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
       console.error("Error:", error);
     } finally {
       setLoading(false);
@@ -104,24 +114,28 @@ const CrearEvento = () => {
 
   return (
     <>
-      
       <header className="mt-24">
-        <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-center bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
           Crear nuevo Evento
         </h1>
         {espacio ? (
-          <p className="text-center mb-6">
-            Espacio físico: <span className="font-semibold">{espacio.nombre}</span> (Capacidad: {espacio.capacidad} personas)
+          <p className="text-center mb-6 text-balance">
+            Espacio físico: <strong>{espacio.nombre}</strong> (Capacidad: {espacio.capacidad} personas)
           </p>
         ) : (
-          <p className="text-center mb-6">Cargando información del espacio...</p>
-        )}      
-        </header>
+          <p className="text-center mb-6 text-balance">
+            Cargando información del espacio...
+          </p>
+        )}
+      </header>
 
-      <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl mx-auto px-4 mb-8">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 max-w-3xl mx-auto px-4 mb-8 text-xs sm:text-sm font-medium"
+      >
         {/* Nombre */}
         <div className="flex flex-col">
-          <label className="text-sm font-medium mb-1" htmlFor="nombre">
+          <label className="mb-1" htmlFor="nombre">
             Nombre del evento *
           </label>
           <input
@@ -137,7 +151,7 @@ const CrearEvento = () => {
 
         {/* Organizador */}
         <div className="flex flex-col">
-          <label className="text-sm font-medium mb-1" htmlFor="organizador">
+          <label className="mb-1" htmlFor="organizador">
             Organizador *
           </label>
           <input
@@ -155,7 +169,7 @@ const CrearEvento = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Plazas */}
           <div className="flex flex-col">
-            <label className="text-sm font-medium mb-1" htmlFor="plazas">
+            <label className="mb-1" htmlFor="plazas">
               Número de plazas *
             </label>
             <input
@@ -178,7 +192,7 @@ const CrearEvento = () => {
 
           {/* Categoría */}
           <div className="flex flex-col">
-            <label className="text-sm font-medium mb-1" htmlFor="categoria">
+            <label className="mb-1" htmlFor="categoria">
               Categoría *
             </label>
             <select
@@ -189,11 +203,21 @@ const CrearEvento = () => {
               required
               className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
             >
-              <option value="ACADEMICOS" className="text-primary">Académicos</option>
-              <option value="CULTURALES" className="text-primary">Culturales</option>
-              <option value="ENTRETENIMIENTO" className="text-primary">Entretenimiento</option>
-              <option value="DEPORTES" className="text-primary">Deportes</option>
-              <option value="OTROS" className="text-primary">Otros</option>
+              <option value="ACADEMICOS" className="text-primary">
+                Académicos
+              </option>
+              <option value="CULTURALES" className="text-primary">
+                Culturales
+              </option>
+              <option value="ENTRETENIMIENTO" className="text-primary">
+                Entretenimiento
+              </option>
+              <option value="DEPORTES" className="text-primary">
+                Deportes
+              </option>
+              <option value="OTROS" className="text-primary">
+                Otros
+              </option>
             </select>
           </div>
         </div>
@@ -202,7 +226,7 @@ const CrearEvento = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Fecha Inicio */}
           <div className="flex flex-col">
-            <label className="text-sm font-medium mb-1" htmlFor="fecha_inicio">
+            <label className="mb-1" htmlFor="fecha_inicio">
               Fecha de inicio *
             </label>
             <input
@@ -212,14 +236,14 @@ const CrearEvento = () => {
               value={formData.fecha_inicio}
               onChange={handleInputChange}
               required
-              min={new Date().toISOString().split('T')[0]}
+              min={new Date().toISOString().split("T")[0]}
               className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
             />
           </div>
 
           {/* Fecha Fin */}
           <div className="flex flex-col">
-            <label className="text-sm font-medium mb-1" htmlFor="fecha_fin">
+            <label className="mb-1" htmlFor="fecha_fin">
               Fecha de fin *
             </label>
             <input
@@ -229,7 +253,9 @@ const CrearEvento = () => {
               value={formData.fecha_fin}
               onChange={handleInputChange}
               required
-              min={formData.fecha_inicio || new Date().toISOString().split('T')[0]}
+              min={
+                formData.fecha_inicio || new Date().toISOString().split("T")[0]
+              }
               className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-[0.5px] focus:ring-secondary"
             />
           </div>
@@ -237,7 +263,7 @@ const CrearEvento = () => {
 
         {/* Descripción */}
         <div className="flex flex-col">
-          <label className="text-sm font-medium mb-1" htmlFor="descripcion">
+          <label className="mb-1" htmlFor="descripcion">
             Descripción *
           </label>
           <textarea
@@ -253,7 +279,7 @@ const CrearEvento = () => {
 
         {/* URL de la imagen */}
         <div className="flex flex-col">
-          <label className="text-sm font-medium mb-1" htmlFor="imagen">
+          <label className="mb-1" htmlFor="imagen">
             URL de la imagen *
           </label>
           <input
@@ -267,9 +293,7 @@ const CrearEvento = () => {
           />
         </div>
 
-        {error && (
-          <div className="text-red-600 text-sm">{error}</div>
-        )}
+        {error && <div className="text-red-600 text-sm">{error}</div>}
 
         <div className="flex gap-4">
           <button
