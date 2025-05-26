@@ -1,6 +1,8 @@
 import { Reserva } from '../models/reserva.js';
 
-export class ReservaController {    static async getReservaById(req, res) {
+export class ReservaController {    
+    
+    static async getReservaById(req, res) {
         const reservaId = req.params.id;
         try {
             const reserva = await Reserva.getReservaById(reservaId);
@@ -21,7 +23,8 @@ export class ReservaController {    static async getReservaById(req, res) {
             res.status(500).send('Error fetching reserva from the database');
         }
     }
-      static async getReservasByUsuario(req, res) {
+      
+    static async getReservasByUsuario(req, res) {
         const usuarioId = req.params.usuarioId;
         
         // Verificar que el usuario autenticado solo puede ver sus propias reservas

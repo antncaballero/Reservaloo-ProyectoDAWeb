@@ -199,8 +199,9 @@ export class Evento {
          'SELECT COUNT(*) as count FROM eventos WHERE fecha_inicio >= CURDATE() AND cancelado = false'
       );
       return rows[0].count;
-   }   // Método para actualizar un evento
+   }   
    
+   // Método para actualizar un evento
    static async updateEvento(id, eventoData) {
          const [result] = await db.query(
             `UPDATE eventos SET 

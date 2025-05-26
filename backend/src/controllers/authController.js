@@ -75,7 +75,7 @@ export class AuthController {
                 return res.status(401).json({ message: 'User not found' });
             }
 
-            res.json({
+            res.status(200).json({
                 id: user.id,
                 nombre: user.nombre,
                 email: user.email,
