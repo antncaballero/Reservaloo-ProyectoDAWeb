@@ -80,9 +80,9 @@ INSERT INTO eventos (nombre, descripcion, organizador, plazas, categoria, cancel
 ('Partido de Fútbol Amistoso', 'Encuentro deportivo entre facultades', 'Universidad de Murcia', 5, 'DEPORTES', FALSE, '2025-05-15', '2025-05-15', 3, 'https://th.bing.com/th/id/OIP.zDyEhLdNgZ9zAmv1RdNt4AHaEK?rs=1&pid=ImgDetMain'),
 ('Feria del Libro', 'Exposición de editoriales y autores', 'Facultad de Letras', 15, 'CULTURALES', TRUE, '2025-04-20', '2025-04-22', 4, 'https://th.bing.com/th/id/OIP.JOi9y7g9xagFFNm5iCsGlAHaE8?rs=1&pid=ImgDetMain'),
 ('Cine al Aire Libre', 'Proyección gratuita de películas', 'Cinesa', 10, 'ENTRETENIMIENTO', FALSE, '2025-05-18', '2025-05-18', 3, 'https://th.bing.com/th/id/OIP.onHirexJ4IsNUTMjbYKDRQHaEK?rs=1&pid=ImgDetMain'),
-('Concierto de Jazz', 'Noche de música en vivo', 'Banda de Jazz', 15, 'ENTRETENIMIENTO', FALSE, '2025-06-22', '2025-05-22', 1, 'https://th.bing.com/th/id/OIP.5eYyoWKMP1-TUdaIg_AJpgHaE8?rs=1&pid=ImgDetMain'),
-('Concierto de Rock', 'Presentación de bandas locales', 'Ayuntamiento de Madrid', 12, 'ENTRETENIMIENTO', FALSE, '2025-06-20', '2025-05-20', 1, 'https://th.bing.com/th/id/OIP.5eYyoWKMP1-TUdaIg_AJpgHaE8?rs=1&pid=ImgDetMain'),
-('Exposición de Arte', 'Muestra de artistas emergentes', 'Facultad de Artes', 5, 'CULTURALES', FALSE, '2025-06-25', '2025-06-27', 4, 'https://th.bing.com/th/id/OIP.JOi9y7g9xagFFNm5iCsGlAHaE8?rs=1&pid=ImgDetMain');
+('Concierto de Jazz', 'Noche de música en vivo', 'Banda de Jazz', 15, 'ENTRETENIMIENTO', FALSE, '2025-06-22', '2025-06-22', 1, 'https://th.bing.com/th/id/OIP.5eYyoWKMP1-TUdaIg_AJpgHaE8?rs=1&pid=ImgDetMain'),
+('Concierto de Rock', 'Presentación de bandas locales', 'Ayuntamiento de Madrid', 12, 'ENTRETENIMIENTO', FALSE, '2025-06-20', '2025-06-20', 1, 'https://th.bing.com/th/id/OIP.5eYyoWKMP1-TUdaIg_AJpgHaE8?rs=1&pid=ImgDetMain'),
+('Exposición de Arte', 'Muestra de artistas emergentes', 'Facultad de Artes', 5, 'CULTURALES', TRUE, '2025-06-25', '2025-06-27', 4, 'https://th.bing.com/th/id/OIP.JOi9y7g9xagFFNm5iCsGlAHaE8?rs=1&pid=ImgDetMain');
 
 -- Insertar reservas
 INSERT INTO reservas (usuario_id, evento_id, cantidad) VALUES

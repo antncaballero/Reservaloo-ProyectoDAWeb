@@ -69,7 +69,8 @@ export class ReservaController {
             res.status(500).send('Error al eliminar la reserva de la base de datos');
         }
     }
-      static async createReserva(req, res) {
+      
+    static async createReserva(req, res) {
         try {
             const { evento_id, user_id, cantidad } = req.body;
             
