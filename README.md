@@ -41,7 +41,7 @@ Aquí se muestran algunas capturas de pantalla de las vistas principales del pro
 
 ![Vista principal de usuario](https://github.com/antncaballero/Proyecto-DAWEB/blob/main/imagenes-readme/principal-user.png)
 
-#### Vista de usuario: Reservar espacio
+#### Vista de usuario: Eventos asociados a un espacio
 
 ![Vista de usuario](https://github.com/antncaballero/Proyecto-DAWEB/blob/main/imagenes-readme/espacio-user.png)
 
@@ -53,7 +53,7 @@ Aquí se muestran algunas capturas de pantalla de las vistas principales del pro
 
 ![Reservas de usuario](https://github.com/antncaballero/Proyecto-DAWEB/blob/main/imagenes-readme/reservas-user.png)
 
-#### Vista de reserva de plazas
+#### Vista de evento y de reserva de plazas
 
 ![Reserva de plazas](https://github.com/antncaballero/Proyecto-DAWEB/blob/main/imagenes-readme/reservaplazas-user.png)
 
