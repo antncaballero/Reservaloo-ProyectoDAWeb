@@ -1,4 +1,4 @@
-# Reservaloo -Proyecto Desarrollo Web 2024/2025 
+# Reservaloo - Proyecto Desarrollo Web 2024/2025 
 
 Reservaloo es un proyecto de desarrollo web que permite a los usuarios reservar espacios para los eventos, que serán gestionados por los administradores, al igual que los espacios físicos.   
 
@@ -33,4 +33,28 @@ npm run dev
 ```
 En el navegador, abrir la siguiente URL: [http://localhost:5173](http://localhost:5173)
 
+## Imágenes del proyecto
 
+### Vista principal de usuario
+
+![Vista principal de usuario](https://raw.githubusercontent.com/antncaballero/Proyecto-DAWEB/main/imagenes-readme/principal-user.png)
+
+### Vista de usuario: Reservar espacio
+
+![Vista de usuario](https://raw.githubusercontent.com/antncaballero/Proyecto-DAWEB/main/imagenes-readme/espacio-user.png)
+
+### Vista de administrador: Gestión de eventos
+
+![Vista de administrador](https://raw.githubusercontent.com/antncaballero/Proyecto-DAWEB/main/imagenes-readme/eventos-admin.png)
+
+### Vista de reservas de usuario
+
+![Reservas de usuario](https://raw.githubusercontent.com/antncaballero/Proyecto-DAWEB/main/imagenes-readme/reservas-user.png)
+
+### Vista de reserva de plazas
+
+![Reserva de plazas](https://raw.githubusercontent.com/antncaballero/Proyecto-DAWEB/main/imagenes-readme/reservaplazas-user.png)
+
+### Vista responsive de la vista principal de usuario
+
+![Vista responsive](https://raw.githubusercontent.com/antncaballero/Proyecto-DAWEB/main/imagenes-readme/responsive-user.png)
