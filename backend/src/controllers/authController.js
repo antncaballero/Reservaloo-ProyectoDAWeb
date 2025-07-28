@@ -42,7 +42,7 @@ export class AuthController {
             });
             
             // Redirigir según el rol del usuario
-            const redirectUrl = user.rol === 'admin' ? 'http://localhost:5173/gestion' : 'http://localhost:5173/';
+            const redirectUrl = user.rol === 'gestor' ? 'http://localhost:5173/gestor' : 'http://localhost:5173/';
             res.redirect(redirectUrl);
           } catch (error) {
             console.error('Error en el login:', error);

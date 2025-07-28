@@ -9,7 +9,7 @@ export default function useFilterEvents() {
     const [error, setError] = useState(null);
     const [filtros, setFiltros] = useState({
         categoria: '',
-        fecha_inicio: fechaActual, // Inicializamos con la fecha actual
+        fecha_inicio: fechaActual,
         nombre: '',
         nombre_espacio: '',
         plazas_minimas: ''

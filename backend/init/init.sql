@@ -1,8 +1,4 @@
--- Eliminamos tablas si ya existen (por orden de dependencias)
--- DROP TABLE IF EXISTS reservas;
--- DROP TABLE IF EXISTS eventos;
--- DROP TABLE IF EXISTS espacios;
--- DROP TABLE IF EXISTS usuarios;
+-- Este fichero contiene datos de prueba para hacer un poblado inicial de la BBDD
 -- Tabla usuarios
 SET NAMES utf8mb4;
 
